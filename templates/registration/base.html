@@ -1,0 +1,19 @@
+{% extends "base.html" %}
+
+{% block title %}
+{% endblock title %}
+
+{% block loading %}
+  {% load static %}
+  <link rel="stylesheet" href="{% static 'css/registration/base.css' %}">
+{% endblock loading %}
+
+{% block content %}
+  <main class="text-center form-signin">
+    <a href="{% url 'home' %}"><img src="{% static 'images/logo.gif' %}" alt="logo" class="mb-3" width="120px"></a>
+
+    {% block login_or_signup %}
+    {% endblock login_or_signup %}
+
+  </main>
+{% endblock content %}

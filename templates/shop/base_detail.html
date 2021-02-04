@@ -1,0 +1,45 @@
+{% extends 'base.html' %}
+
+{% block title %}
+{% endblock title %}
+
+{% block loading %}
+  {% load static %}
+  <link rel="stylesheet" href="{% static 'css/shop/base_list_and_detail.css' %}">
+  <link rel="stylesheet" href="{% static 'css/shop/base_detail.css' %}">
+{% endblock loading %}
+
+{% block content %}
+
+  {% include 'header.html' %}
+
+  <main class="d-flex flex-column shop_main">
+    <div class="container marketing">
+      <hr class="featurette-divider">
+      <div class="row featurette">
+        <div class="col-md-7 order-md-2 prod_text">
+
+          {% block base_detail_content %}
+          {% endblock base_detail_content %}
+
+        </div>
+        <div class="col-md-5 order-md-1 prod_img"
+             style="background-image: url({% static 'images/'|add:prod.prod_imgname %});
+                    background-size: contain;
+                    background-repeat: no-repeat;
+                    background-position: center;">
+        </div>
+      </div>
+      <hr class="featurette-divider">
+    </div>
+  </main>
+  <footer class="footer mt-auto py-3 bg-light">
+    <div class="container">
+
+      {% block base_detail_footer %}
+      {% endblock base_detail_footer %}
+
+      <span class="float-end time">Current Time: {{ current_time }}</span>
+    </div>
+  </footer>
+{% endblock content %}

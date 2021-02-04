@@ -1,0 +1,25 @@
+
+{% extends "registration/base.html" %}
+
+{% block title %}
+  Login
+{% endblock title %}
+
+{% block login_or_signup %}
+  {% if form.errors %}
+  <p class="mb-4 text-muted smaller">
+    Username and password didn't match. Please try again.
+  </p>
+  {% endif %}
+
+  <form action="{% url 'login' %}?next={{ next }}" method="POST">
+    {% csrf_token %}
+    <input type="text" name="username" placeholder="Username" class="form-control" required autofocus>
+    <input type="password" name="password" placeholder="Password" class="form-control" required>
+    <input type="submit" value="Login" class="w-100 btn btn-primary mt-2">
+  </form>
+
+  <p class="text-muted smaller mt-4 mb-0">
+    <a href="{% url 'signup' %}">Sign up</a> if you don't have an account yet.
+  </p>
+{% endblock login_or_signup %}

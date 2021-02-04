@@ -1,0 +1,17 @@
+{% extends "shop/base_detail.html" %}
+
+{% block title %}
+  Order
+{% endblock title %}
+
+{% block base_detail_content %}
+  {% if user.is_authenticated %}
+    {% load humanize %}
+    <p class="lead heavier">
+      Thank you for ordering {{ prod }} x{{ order_quantity }}<br>
+      on {{ order.order_date }} {{ cust }}!<br><br>
+      The total payment is NT$ {{ order_totalprice | floatformat:0 | intcomma }}.<br><br>
+      Please note that no items will show up at your door!
+    </p>
+  {% endif %}
+{% endblock base_detail_content %}

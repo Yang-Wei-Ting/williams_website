@@ -1,0 +1,39 @@
+.featurette-divider {
+  margin: 3rem 0;
+}
+
+.featurette-heading {
+  font-weight: 550;
+  line-height: 1;
+  letter-spacing: -.05rem;
+  margin-bottom: 1rem;
+}
+
+.lead.heavier {
+  font-weight: 400;
+}
+
+.prod_text, .prod_img {
+  padding-right: calc(var(--bs-gutter-x));
+  padding-left: calc(var(--bs-gutter-x));
+}
+
+
+
+/* RESPONSIVE CSS
+-------------------------------------------------- */
+@media (min-width: 40em) {
+  .featurette-heading {
+    font-size: 50px;
+  }
+}
+
+@media (min-width: 62em) {
+  .featurette-heading {
+    margin-top: 4rem;
+    margin-bottom: 1.5rem;
+  }
+  .featurette-heading, .lead.heavier {
+    margin-left: 3rem;
+  }
+}

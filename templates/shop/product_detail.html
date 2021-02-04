@@ -1,0 +1,32 @@
+{% extends "shop/base_detail.html" %}
+
+{% block title %}
+  {{ prod.prod_name }}
+{% endblock title %}
+
+{% block base_detail_content %}
+  <h1 class="featurette-heading">{{ prod.prod_name }}</h1>
+  <p class="lead heavier">Manufactured by {{ prod.vend_id }}</p>
+  <p class="lead heavier">{{ prod.prod_desc | linebreaksbr }}</p>
+  {% load humanize %}
+  <p class="lead heavier">NT$ {{ prod.prod_price | floatformat:0 | intcomma }}</p>
+
+  {% if user.is_authenticated %}
+  <form action="{% url 'order' %}" method="POST">
+    {% csrf_token %}
+    <label class="lead heavier me-2">
+      Quantity <input type="number" name="order_quantity" min="0" max="99" value="1">
+    </label>
+    <input type="hidden" name="prod_id" value="{{ prod.id }}">
+    <input type="hidden" name="cust_id" value="{{ user.id }}">
+    <input type="submit" value="Order Now!" class="btn btn-primary mb-2">
+  </form>
+  {% else %}
+  <p class="lead heavier">Please login to order.</p>
+  {% endif %}
+{% endblock base_detail_content %}
+
+{% block base_detail_footer %}
+  <a class="text-muted" data-bs-toggle="tooltip" data-bs-placement="right"
+     title="{{ prod.prod_imgsrc }}">About the Image</a>
+{% endblock base_detail_footer %}
