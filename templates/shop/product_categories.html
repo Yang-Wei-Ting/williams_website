@@ -1,0 +1,13 @@
+{% extends 'shop/base.html' %}
+
+{% block subtitle %}
+  Product Categories
+{% endblock subtitle %}
+
+{% block subcontent %}
+  <div class="card-body">
+    <h5 class="card-title">
+      <a href="{% url 'product_category_products' object.id %}">{{ object }}</a>
+    </h5>
+  </div>
+{% endblock subcontent %}

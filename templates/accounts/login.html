@@ -1,0 +1,39 @@
+{% extends "base.html" %}
+
+{% block title %}
+  Login
+{% endblock title %}
+
+{% block css %}
+  {% load static %}
+  <link rel="stylesheet" href="{% static 'css/registration/login_and_signup.css' %}">
+{% endblock css %}
+
+{% block header %}
+{% endblock header %}
+
+{% block content %}
+  <main class="text-center form-signin">
+    <a href="{% url 'home' %}"><img class="mb-3" src="{% static 'images/logo.gif' %}" alt="logo" width="120"></a>
+
+    {% if form.errors %}
+      <p class="mb-4 text-muted smaller">
+        Username and password didn't match. Please try again.
+      </p>
+    {% endif %}
+
+    <form action="{% url 'login' %}?next={{ next }}" method="POST">
+      {% csrf_token %}
+      <input type="text" name="username" placeholder="Enter your username" class="form-control" required autofocus>
+      <input type="password" name="password" placeholder="Enter your password" class="form-control" required>
+      <input type="submit" value="Login" class="w-100 btn btn-primary mt-3">
+    </form>
+
+    <p class="text-muted smaller mt-4 mb-0">
+      <strong><a href="{% url 'signup' %}">Signup</a></strong> if you don't have an account yet.
+    </p>
+  </main>
+{% endblock content %}
+
+{% block footer %}
+{% endblock footer %}

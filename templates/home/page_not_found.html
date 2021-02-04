@@ -1,0 +1,25 @@
+{% extends 'base.html' %}
+
+{% block title %}
+  Page Not Found
+{% endblock title %}
+
+{% block css %}
+  {% load static %}
+  <link rel="stylesheet" type="text/css" href="{% static 'css/home/page_not_found.css' %}">
+{% endblock css %}
+
+{% block content %}
+  <main>
+    <span id="text">Oops! The page does not exist.</span>
+    <div class="carousel-caption text-end">
+      <a class="float-end" id="caption"
+         href="https://steamcommunity.com/sharedfiles/filedetails/?id=2283460989"
+         data-bs-toggle="tooltip" data-bs-placement="left"
+         title="Screenshot of BioShock Infinite by XiDeR">About the Background</a>
+    </div>
+  </main>
+{% endblock content %}
+
+{% block footer %}
+{% endblock footer %}

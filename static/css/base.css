@@ -1,0 +1,68 @@
+/* GLOBAL STYLES
+-------------------------------------------------- */
+
+body {
+	height: 100vh;
+	padding-top: 3.5rem;
+}
+
+.tooltip-inner {
+	max-width: 550px;
+	text-align: left;
+}
+
+
+/* header.html
+-------------------------------------------------- */
+
+#navbarCollapse > ul > .user-name > span {
+	color: #fff;
+}
+
+#navbarCollapse > ul:nth-child(2) > li:nth-last-child(1) {
+	padding-right: .5rem;
+}
+
+#navbarCollapse > ul:nth-child(3) > li > button {
+	background-color: transparent;
+	padding: .08rem .45rem;
+}
+
+#navbarCollapse > ul:nth-child(3) > li > button:focus {
+	box-shadow: 0 0 0 .1rem;
+}
+
+@media all and (min-width: 992px) {
+	.navbar .nav-item .dropdown-menu {
+		display: block;
+		opacity: 0;
+		visibility: hidden;
+		transition: .3s;
+		margin-top: 0;
+	}
+
+	.navbar .nav-item:hover .nav-link {
+		color: #fff;
+	}
+
+	.navbar .nav-item:hover .dropdown-menu {
+		transition: .3s;
+		opacity: 1;
+		visibility: visible;
+		top: 100%;
+		transform: rotateX(0deg);
+	}
+}
+
+
+/* footer.html
+-------------------------------------------------- */
+
+#footer_logo {
+	height: 1.5rem;
+	margin-bottom: .2rem;
+}
+
+.footer.text-muted {
+	padding-right: 5px;
+}

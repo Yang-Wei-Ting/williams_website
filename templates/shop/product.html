@@ -1,0 +1,59 @@
+{% extends 'shop/base.html' %}
+
+{% block subtitle %}
+  {{ product }}
+{% endblock subtitle %}
+
+{% block content %}
+  <main class="d-flex flex-column shop_main">
+    <div class="container">
+      <hr class="featurette-divider">
+      <div class="row">
+        <div class="col-md-7 order-md-2 prod_text">
+          {% load humanize %}
+
+          {% if user.is_authenticated and purchased %}
+            <p class="lead heavier">
+              Thank you for ordering {{ product }} (x{{ order.order_quantity }})
+              on {{ order.order_date }} {{ user.get_username }}!<br><br>
+              The total payment is NT$ {{ order.order_totalprice | floatformat:0 | intcomma }}.<br><br>
+              Please note that no items will show up at your door!
+            </p>
+          {% else %}
+            <h1 class="featurette-heading">{{ product }}</h1>
+            <p class="lead heavier">Manufactured by {{ product.vend }}</p>
+            <p class="lead heavier">{{ product.prod_desc | linebreaksbr }}</p>
+            <p class="lead heavier">NT$ {{ product.prod_price | floatformat:0 | intcomma }}</p>
+
+            {% if user.is_authenticated %}
+
+              <form action="{% url 'product' product.id %}" method="POST">
+                {% csrf_token %}
+                <label class="lead heavier me-2">
+                  {% load widget_tweaks %}
+                  Quantity {{ form.order_quantity | attr:"min:1" | attr:"max:99" | attr:"value:1" }}
+                </label>
+                <input type="submit" value="Order Now!" class="btn btn-primary mb-2">
+              </form>
+
+            {% else %}
+              <p class="lead heavier">
+                Please <a href="{% url 'login' %}?next={{ request.path }}"><button type="button" class="btn btn-primary">login</button></a> to order.
+              </p>
+            {% endif %}
+
+          {% endif %}
+
+        </div>
+        {% load static %}
+        <div class="col-md-5 order-md-1"
+             style="background-image: url({% static 'images/'|add:product.prod_imgname %});
+                    background-size: contain;
+                    background-repeat: no-repeat;
+                    background-position: center;">
+        </div>
+      </div>
+      <hr class="featurette-divider">
+    </div>
+  </main>
+{% endblock content %}

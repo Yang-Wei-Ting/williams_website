@@ -1,0 +1,59 @@
+{% extends "base.html" %}
+
+{% block title %}
+  Signup
+{% endblock title %}
+
+{% block css %}
+  {% load static %}
+  <link rel="stylesheet" href="{% static 'css/registration/login_and_signup.css' %}">
+{% endblock css %}
+
+{% block header %}
+{% endblock header %}
+
+{% block content %}
+  <main class="text-center form-signin">
+    <a href="{% url 'home' %}"><img class="mb-3" src="{% static 'images/logo.gif' %}" alt="logo" width="120"></a>
+
+    {% if form.errors %}
+      <p class="text-muted smaller mb-4">
+
+        {% for error in form.username.errors %}
+          {{ error | escape }}<br>
+        {% endfor %}
+
+        {% for error in form.password1.errors %}
+          {{ error | escape }}<br>
+        {% endfor %}
+
+        {% for error in form.password2.errors %}
+          {{ error | escape }}<br>
+        {% endfor %}
+
+      </p>
+    {% endif %}
+
+    <form action="{% url 'signup' %}" method="POST">
+      {% csrf_token %}
+      {% load widget_tweaks %}
+      {{ form.username  | attr:"class:form-control" | attr:"placeholder:Set your username" | attr:"autofocus" }}
+      {{ form.password1 | attr:"class:form-control" | attr:"placeholder:Set your password" }}
+      {{ form.password2 | attr:"class:form-control" | attr:"placeholder:Enter your password again" }}
+      <input type="submit" value="Signup" class="w-100 btn btn-primary mt-3">
+    </form>
+
+    <p class="text-muted smaller mt-4 mb-0">
+      <strong><a href="{% url 'login' %}">Login</a></strong> if you already have an account.
+    </p>
+  </main>
+  <div class="carousel-caption text-end">
+    <a class="float-end" id="background-caption"
+       href="http://www.tacobelvedere.com/2014/03/new-eden.html"
+       data-bs-toggle="tooltip" data-bs-placement="left"
+       title="&quot;New Eden&quot; by Mark Englert">About the Background</a>
+  </div>
+{% endblock content %}
+
+{% block footer %}
+{% endblock footer %}

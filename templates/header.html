@@ -1,0 +1,87 @@
+<header>
+  <nav class="navbar navbar-expand-lg navbar-dark fixed-top bg-dark">
+    <div class="container-fluid">
+      <a class="navbar-brand" href="{% url 'home' %}">William's Website</a>
+      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarCollapse"
+              aria-controls="navbarCollapse" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+      <div class="collapse navbar-collapse" id="navbarCollapse">
+        <ul class="navbar-nav me-auto mb-2 mb-md-0">
+          <li class="nav-item dropdown">
+            <span class="nav-link dropdown-toggle" id="dropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+              My Imaginary Shop
+            </span>
+            <ul class="dropdown-menu" aria-labelledby="dropdown">
+              <li><a class="dropdown-item" href="{% url 'products' %}">Products</a></li>
+              <li><a class="dropdown-item" href="{% url 'product_categories' %}">Product Categories</a></li>
+              <li><a class="dropdown-item" href="{% url 'vendors' %}">Vendors</a></li>
+              <li><a class="dropdown-item" href="{% url 'products_api' %}">Products API</a></li>
+            </ul>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="https://github.com/Yang-Wei-Ting">My GitHub</a>
+          </li>
+        </ul>
+
+        {% if user.is_authenticated %}
+          <ul class="navbar-nav me-0">
+            <li class="nav-item user-name">
+              <span class="nav-link">
+
+                {% if current_hour < 6 %}
+                  Hello
+                {% elif current_hour < 12 %}
+                  Good Morning
+                {% elif current_hour < 17 %}
+                  Good Afternoon
+                {% elif current_hour < 20 %}
+                  Good Evening
+                {% else %}
+                  Good Night
+                {% endif %}
+
+                {{ user.username }}!
+              </span>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="{% url 'logout' %}?next={{ request.path }}">Logout</a>
+            </li>
+          </ul>
+        {% else %}
+          <ul class="navbar-nav me-0">
+            <li class="nav-item">
+              <span class="nav-link">{{ greeting_msg }}</span>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="{% url 'login' %}?next={{ request.path }}">Login</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="{% url 'signup' %}">Signup</a>
+            </li>
+          </ul>
+        {% endif %}
+
+        <ul class="navbar-nav me-0">
+          <li class="nav-item">
+            {% load static %}
+            <audio id="music" src="{% static 'audio/welcome_to_columbia.mp3' %}" loop></audio>
+            <button class="btn btn-secondary nav-link" type="button" onclick="playAudio()">
+              <svg class="bi bi-music-note-beamed" xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" viewBox="0 0 16 16">
+                <path d="M6 13c0 1.105-1.12 2-2.5 2S1 14.105 1 13c0-1.104 1.12-2 2.5-2s2.5.896 2.5 2zm9-2c0 1.105-1.12 2-2.5 2s-2.5-.895-2.5-2 1.12-2 2.5-2 2.5.895 2.5 2z"></path>
+                <path fill-rule="evenodd" d="M14 11V2h1v9h-1zM6 3v10H5V3h1z"></path>
+                <path d="M5 2.905a1 1 0 0 1 .9-.995l8-.8a1 1 0 0 1 1.1.995V3L5 4V2.905z"></path>
+              </svg>
+            </button>
+            <script>
+              var x = document.getElementById("music");
+              function playAudio() {
+                x.play();
+              }
+            </script>
+          </li>
+        </ul>
+      </div>
+    </div>
+  </nav>
+</header>

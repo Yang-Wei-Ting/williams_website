@@ -1,0 +1,40 @@
+{% extends 'base.html' %}
+
+{% block title %}
+  My Imaginary Shop -
+
+  {% block subtitle %}
+  {% endblock subtitle %}
+
+{% endblock title %}
+
+{% block css %}
+  {% load static %}
+  <link rel="stylesheet" href="{% static 'css/shop/base.css' %}">
+{% endblock css %}
+
+{% block content %}
+  <main class="shop_main">
+    <div class="container py-5">
+      <div class="row" data-masonry="{&quot;percentPosition&quot;: true}" style="position: relative; height: 860px;">
+
+        {% for object in object_list %}
+          <div class="col-sm-6 col-lg-4 mb-4" style="position: absolute; left: 0%; top: 0px;">
+            <div class="card">
+
+              {% block subcontent %}
+              {% endblock subcontent %}
+
+            </div>
+          </div>
+        {% endfor %}
+
+      </div>
+    </div>
+  </main>
+  <script async=""
+          src="{% static 'js/masonry.pkgd.min.js' %}"
+          integrity="sha384-GNFwBvfVxBkLMJpYMOABq3c+d3KnQxudP/mGPkzpZSTYykLBNsZEnG2D9G/X/+7D"
+          crossorigin="anonymous">
+  </script>
+{% endblock content %}

@@ -1,0 +1,69 @@
+.shop_main {
+	position: relative;
+}
+
+.shop_main:after {
+	content: "";
+	display: block;
+	position: absolute;
+	top: 0;
+	left: 0;
+	background-image: url(../../images/blue_sky.jpg);
+	background-size: cover;
+	width: 100%;
+	height: 100%;
+	min-height: calc(100vh - 3.5rem);
+	opacity: .7;
+	z-index: -1;
+}
+
+.card {
+	border: 0;
+	background-color: #ffffffe0;
+}
+
+.card-title {
+	margin-bottom: 0;
+}
+
+.bd-placeholder-img {
+	font-size: 1.125rem;
+	text-anchor: middle;
+	-webkit-user-select: none;
+	-moz-user-select: none;
+	user-select: none;
+}
+
+.featurette-divider {
+	margin: 2.7rem 0;
+}
+
+.prod_text {
+	padding-left: calc(var(--bs-gutter-x));
+}
+
+.lead.heavier {
+	font-weight: 400;
+}
+
+.featurette-heading {
+	font-weight: 600;
+	line-height: 1;
+	letter-spacing: -.05rem;
+	margin-bottom: 1rem;
+}
+
+.prod_text > p > a > button {
+	padding: .1875rem .375rem;
+}
+
+@media (min-width: 62em) {
+	.featurette-heading {
+		font-size: 50px;
+		margin-top: 4rem;
+		margin-bottom: 1.5rem;
+	}
+	.featurette-heading, .lead.heavier {
+		margin-left: 3rem;
+	}
+}

@@ -1,0 +1,13 @@
+{% extends 'shop/base.html' %}
+
+{% block subtitle %}
+  Vendors
+{% endblock subtitle %}
+
+{% block subcontent %}
+  <div class="card-body">
+    <h5 class="card-title">
+      <a href="{% url 'vendor_products' object.id %}">{{ object }}</a>
+    </h5>
+  </div>
+{% endblock subcontent %}

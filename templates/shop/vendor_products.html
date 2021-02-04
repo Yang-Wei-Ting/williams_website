@@ -1,0 +1,17 @@
+{% extends 'shop/base.html' %}
+
+{% block subtitle %}
+  {{ vendor }}
+{% endblock subtitle %}
+
+{% block subcontent %}
+  {% load static %}
+  <a href="{{ object.get_absolute_url }}">
+    <img class="bd-placeholder-img card-img-top" src="{% static 'images/'|add:object.prod_imgname %}" alt="Product Image">
+  </a>
+  <div class="card-body">
+    <h5 class="card-title">
+      <a href="{{ object.get_absolute_url }}">{{ object }}</a>
+    </h5>
+  </div>
+{% endblock subcontent %}

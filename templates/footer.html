@@ -1,0 +1,15 @@
+<footer class="footer mt-auto py-3 bg-light">
+  <div class="container">
+    {% load static %}
+    <img id="footer_logo" src="{% static 'images/logo.gif' %}" alt="logo">
+    <span class="footer text-muted">© 2021 Wei-Ting Yang. All rights reserved.</span>
+
+    {% if product %}
+      <a class="d-none d-md-inline float-end text-muted" data-bs-toggle="tooltip" data-bs-placement="top"
+         title="{{ product.prod_imgsrc }}">About the Image</a>
+    {% else %}
+      <span class="d-none d-lg-inline float-end text-muted">Current Time: {{ current_time }}</span>
+    {% endif %}
+
+  </div>
+</footer>
