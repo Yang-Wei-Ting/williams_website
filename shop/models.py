@@ -1,5 +1,6 @@
 from django.db import models
 from django.contrib.auth.models import User
+from django.urls import reverse
 
 
 COUNTRY_CHOICES = [
@@ -74,6 +75,9 @@ class Product(models.Model):
 
     def __str__(self):
         return self.prod_name[:50]
+
+    def get_absolute_url(self):
+        return reverse("product_detail", args=[str(self.id)])
 
 
 class Order(models.Model):

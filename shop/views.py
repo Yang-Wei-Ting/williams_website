@@ -13,10 +13,10 @@ def product_category_list_view(request):
     current_hour = current_time.timetuple().tm_hour
 
     '''
-    SELECT product.*
-    FROM product INNER JOIN productcategory
-      ON product.prodcat_id_id = productcategory.id
-    WHERE productcategory.prodcat_name = '??????????';
+    SELECT shop_product.*
+    FROM shop_product INNER JOIN shop_productcategory
+      ON shop_product.prodcat_id_id = shop_productcategory.id
+    WHERE shop_productcategory.prodcat_name = '?????';
     '''
 
     books_movies_music__prods  = a = prods.filter(prodcat_id__prodcat_name="Books, Movies & Music")
@@ -41,6 +41,13 @@ def product_vendor_list_view(request):
     prods = Product.objects.all()
     current_time = datetime.datetime.now()
     current_hour = current_time.timetuple().tm_hour
+
+    '''
+    SELECT shop_product.*
+    FROM shop_product INNER JOIN shop_vendor
+      ON shop_product.vend_id_id = shop_vendor.id
+    WHERE shop_vendor.vend_name = '?????';
+    '''
 
     abibas__prods     = a = prods.filter(vend_id__vend_name="Abibas")
     banana__prods     = b = prods.filter(vend_id__vend_name="Banana")
