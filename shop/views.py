@@ -80,13 +80,10 @@ class ProductDetailView(DetailView):
         return context
 
 
-def order_view(request):
-    current_time = datetime.datetime.now()
-    current_hour = current_time.timetuple().tm_hour
-
+def order_view(request, pk):
     try:
-        cust = User.objects.get(id=request.POST["cust_id"])
-        prod = Product.objects.get(id=request.POST["prod_id"])
+        cust = User.objects.get(id=request.user.id)
+        prod = Product.objects.get(id=pk)
         order_quantity = int(request.POST["order_quantity"])
         order_totalprice = prod.prod_price * order_quantity
         order = Order.objects.create(
@@ -97,5 +94,8 @@ def order_view(request):
         )
     except (User.DoesNotExist, Product.DoesNotExist, KeyError):
         return HttpResponseRedirect("/")
+
+    current_time = datetime.datetime.now()
+    current_hour = current_time.timetuple().tm_hour
 
     return render(request, 'shop/order.html', locals())
