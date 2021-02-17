@@ -11,6 +11,7 @@ python-dotenv = "*"
 and = "*"
 psycopg2 = "*"
 whitenoise = "*"
+djangorestframework = "*"
 
 [dev-packages]
 

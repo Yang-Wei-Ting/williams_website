@@ -47,10 +47,12 @@ INSTALLED_APPS = [
     'whitenoise.runserver_nostatic',
     'django.contrib.staticfiles',
     'django.contrib.humanize',
+    'rest_framework',
 
     'home.apps.HomeConfig',
     'shop.apps.ShopConfig',
     'accounts.apps.AccountsConfig',
+    'api.apps.ApiConfig',
 ]
 
 MIDDLEWARE = [

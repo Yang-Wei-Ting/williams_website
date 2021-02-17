@@ -13,4 +13,5 @@ urlpatterns = [
 
     path('',                 home_view,   name='home'),
     path('shop/',            include('shop.urls')),
+    path('api/',             include('api.urls')),
 ]
