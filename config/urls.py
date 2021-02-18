@@ -8,10 +8,10 @@ from home.views import home_view
 urlpatterns = [
     path('admin/',           admin.site.urls),
     path('accounts/',        include('django.contrib.auth.urls')),
-
     path('accounts/signup/', signup_view, name='signup'),
 
     path('',                 home_view,   name='home'),
     path('shop/',            include('shop.urls')),
-    path('api-v1/',          include('api.urls')),
+    path('api/v1/',          include('api.urls')),
+    path('api-auth/',        include('rest_framework.urls')),
 ]

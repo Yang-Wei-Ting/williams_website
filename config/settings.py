@@ -26,12 +26,10 @@ if os.path.isfile(dotenv_file):
 SECRET_KEY = os.environ['SECRET_KEY']
 
 DEBUG = False
-
 if DEBUG == True:
     ALLOWED_HOSTS = []
 else:
     ALLOWED_HOSTS = ['.herokuapp.com', 'localhost', '127.0.0.1']
-
     SECURE_SSL_REDIRECT = True
     SESSION_COOKIE_SECURE = True
     CSRF_COOKIE_SECURE = True
@@ -68,11 +66,6 @@ MIDDLEWARE = [
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
 ]
-
-CORS_ORIGIN_WHITELIST = (
-    'http://localhost:8000',
-    'https://williams-website.herokuapp.com',
-)
 
 ROOT_URLCONF = 'config.urls'
 
@@ -177,3 +170,15 @@ STATICFILES_STORAGE = 'whitenoise.storage.CompressedManifestStaticFilesStorage'
 
 
 LOGIN_REDIRECT_URL = '/'
+
+
+REST_FRAMEWORK = {
+    'DEFAULT_PERMISSION_CLASSES': [
+        'rest_framework.permissions.IsAdminUser',
+    ]
+}
+
+CORS_ORIGIN_WHITELIST = (
+    'http://localhost:8000',
+    'https://williams-website.herokuapp.com',
+)
