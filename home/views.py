@@ -10,4 +10,10 @@ def home_view(request):
 
     current_hour = datetime.datetime.now().timetuple().tm_hour
 
+    if request.session.get("visited", False):
+        greeting_msg = "Welcome back!"
+    else:
+        greeting_msg = ""
+        request.session["visited"] = True
+
     return render(request, 'home/home.html', locals())

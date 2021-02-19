@@ -27,13 +27,13 @@
           <li class="nav-item user-name">
             <span class="nav-link">
 
-              {% if 6 < current_hour and current_hour < 12 %}
+              {% if 6 <= current_hour and current_hour < 12 %}
                 Good Morning
-              {% elif 12 < current_hour and current_hour < 17 %}
+              {% elif 12 <= current_hour and current_hour < 17 %}
                 Good Afternoon
-              {% elif 17 < current_hour and current_hour < 20 %}
+              {% elif 17 <= current_hour and current_hour < 20 %}
                 Good Evening
-              {% elif 20 < current_hour and current_hour < 24 %}
+              {% elif 20 <= current_hour and current_hour < 24 %}
                 Good Night
               {% else %}
                 Hello
@@ -48,6 +48,13 @@
         </ul>
         {% else %}
         <ul class="navbar-nav me-0">
+
+          {% if greeting_msg %}
+          <li class="nav-item">
+            <span class="nav-link">{{ greeting_msg }}</span>
+          </li>
+          {% endif %}
+
           <li class="nav-item">
             <a class="nav-link" href="{% url 'login' %}?next={{ request.path }}">Login</a>
           </li>

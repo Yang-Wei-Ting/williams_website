@@ -38,7 +38,7 @@ body {
   color: #fff;
 }
 
-#navbarCollapse > ul:nth-child(2) > li:nth-child(2) {
+#navbarCollapse > ul:nth-child(2) > li:nth-last-child(1) {
   padding-right: .5rem;
 }
 
