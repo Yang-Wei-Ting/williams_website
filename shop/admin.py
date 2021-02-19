@@ -14,12 +14,26 @@ class VendorAdmin(admin.ModelAdmin):
 
 
 class ProductAdmin(admin.ModelAdmin):
-    list_display = ("prod_name", "prod_desc", "prod_price", "prod_imgname", "prod_imgsrc", "prodcat_id", "vend_id")
+    list_display = (
+        "prod_name",
+        "prod_desc",
+        "prod_price",
+        "prod_imgname",
+        "prod_imgsrc",
+        "prodcat_id",
+        "vend_id",
+    )
     ordering = ("prodcat_id__prodcat_name", "prod_name",)
 
 
 class OrderAdmin(admin.ModelAdmin):
-    list_display = ("cust_id", "prod_id", "order_quantity", "order_totalprice", "order_date")
+    list_display = (
+        "cust_id",
+        "prod_id",
+        "order_quantity",
+        "order_totalprice",
+        "order_date",
+    )
     ordering = ("-order_date",)
 
 

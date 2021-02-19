@@ -70,8 +70,8 @@ class Product(models.Model):
     prod_price   = models.FloatField("Price (NTD)")
     prod_imgname = models.CharField("Image File Name", max_length=100)
     prod_imgsrc  = models.TextField("Image Source")
-    prodcat_id   = models.ForeignKey(ProductCategory, on_delete=models.CASCADE, verbose_name="Product Category's ID")
-    vend_id      = models.ForeignKey(Vendor, on_delete=models.CASCADE, verbose_name="Vendor's ID")
+    prodcat_id   = models.ForeignKey(ProductCategory, on_delete=models.CASCADE)
+    vend_id      = models.ForeignKey(Vendor, on_delete=models.CASCADE)
 
     def __str__(self):
         return self.prod_name[:50]
@@ -81,8 +81,8 @@ class Product(models.Model):
 
 
 class Order(models.Model):
-    cust_id          = models.ForeignKey(User, on_delete=models.CASCADE, verbose_name="Customer's ID")
-    prod_id          = models.ForeignKey(Product, on_delete=models.CASCADE, verbose_name="Product's ID")
+    cust_id          = models.ForeignKey(User, on_delete=models.CASCADE)
+    prod_id          = models.ForeignKey(Product, on_delete=models.CASCADE)
     order_quantity   = models.PositiveIntegerField("Quantity")
     order_totalprice = models.PositiveIntegerField("Total Price")
     order_date       = models.DateField("Date", auto_now_add=True)
