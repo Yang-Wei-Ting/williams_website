@@ -16,4 +16,4 @@ def signup_view(request):
             return HttpResponseRedirect('/accounts/login/')
     else:
         form = SignupForm()
-    return render(request, 'registration/signup.html', locals())
+    return render(request, 'registration/signup.html', context={'form': form})
