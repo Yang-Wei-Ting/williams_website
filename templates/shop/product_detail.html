@@ -8,14 +8,14 @@
   <p class="lead heavier">NT$ {{ prod.prod_price | floatformat:0 | intcomma }}</p>
 
   {% if user.is_authenticated %}
-  <form action="{% url 'order' prod.id %}" method="POST">
-    {% csrf_token %}
-    <label class="lead heavier me-2">
-      Quantity <input type="number" name="order_quantity" min="0" max="99" value="1">
-    </label>
-    <input type="submit" value="Order Now!" class="btn btn-primary mb-2">
-  </form>
+    <form action="{% url 'thanks' prod.id %}" method="POST">
+      {% csrf_token %}
+      <label class="lead heavier me-2">
+        Quantity <input type="number" name="order_quantity" min="0" max="99" value="1">
+      </label>
+      <input type="submit" value="Order Now!" class="btn btn-primary mb-2">
+    </form>
   {% else %}
-  <p class="lead heavier">Please login to order.</p>
+    <p class="lead heavier">Please login to order.</p>
   {% endif %}
 {% endblock base_detail_content %}

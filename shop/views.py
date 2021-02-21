@@ -80,7 +80,7 @@ class ProductDetailView(DetailView):
         return context
 
 
-def order_view(request, pk):
+def thanks_view(request, pk):
     try:
         cust = User.objects.get(id=request.user.id)
         prod = Product.objects.get(id=pk)
@@ -98,4 +98,4 @@ def order_view(request, pk):
     current_time = datetime.datetime.now()
     current_hour = current_time.timetuple().tm_hour
 
-    return render(request, 'shop/order.html', locals())
+    return render(request, 'shop/thanks.html', locals())
