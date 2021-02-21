@@ -1,9 +1,5 @@
 {% extends "shop/base_detail.html" %}
 
-{% block title %}
-  {{ prod.prod_name }}
-{% endblock title %}
-
 {% block base_detail_content %}
   <h1 class="featurette-heading">{{ prod.prod_name }}</h1>
   <p class="lead heavier">Manufactured by {{ prod.vend_id }}</p>
@@ -23,8 +19,3 @@
   <p class="lead heavier">Please login to order.</p>
   {% endif %}
 {% endblock base_detail_content %}
-
-{% block base_detail_footer %}
-  <a class="text-muted" data-bs-toggle="tooltip" data-bs-placement="right"
-     title="{{ prod.prod_imgsrc }}">About the Image</a>
-{% endblock base_detail_footer %}

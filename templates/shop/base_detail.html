@@ -1,6 +1,7 @@
 {% extends 'base.html' %}
 
 {% block title %}
+  {{ prod.prod_name }}
 {% endblock title %}
 
 {% block loading %}
@@ -35,10 +36,8 @@
   </main>
   <footer class="footer mt-auto py-3 bg-light">
     <div class="container">
-
-      {% block base_detail_footer %}
-      {% endblock base_detail_footer %}
-
+      <a class="text-muted" data-bs-toggle="tooltip" data-bs-placement="right"
+         title="{{ prod.prod_imgsrc }}">About the Image</a>
       <span class="float-end time">Current Time: {{ current_time }}</span>
     </div>
   </footer>
