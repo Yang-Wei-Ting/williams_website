@@ -23,45 +23,45 @@
         </ul>
 
         {% if user.is_authenticated %}
-        <ul class="navbar-nav me-0">
-          <li class="nav-item user-name">
-            <span class="nav-link">
+          <ul class="navbar-nav me-0">
+            <li class="nav-item user-name">
+              <span class="nav-link">
 
-              {% if 6 <= current_hour and current_hour < 12 %}
-                Good Morning
-              {% elif 12 <= current_hour and current_hour < 17 %}
-                Good Afternoon
-              {% elif 17 <= current_hour and current_hour < 20 %}
-                Good Evening
-              {% elif 20 <= current_hour and current_hour < 24 %}
-                Good Night
-              {% else %}
-                Hello
-              {% endif %}
+                {% if 6 <= current_hour and current_hour < 12 %}
+                  Good Morning
+                {% elif 12 <= current_hour and current_hour < 17 %}
+                  Good Afternoon
+                {% elif 17 <= current_hour and current_hour < 20 %}
+                  Good Evening
+                {% elif 20 <= current_hour and current_hour < 24 %}
+                  Good Night
+                {% else %}
+                  Hello
+                {% endif %}
 
-              {{ user.get_username }}!
-            </span>
-          </li>
-          <li class="nav-item">
-            <a class="nav-link" href="{% url 'logout' %}?next={{ request.path }}">Logout</a>
-          </li>
-        </ul>
+                {{ user.get_username }}!
+              </span>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="{% url 'logout' %}?next={{ request.path }}">Logout</a>
+            </li>
+          </ul>
         {% else %}
-        <ul class="navbar-nav me-0">
+          <ul class="navbar-nav me-0">
 
-          {% if greeting_msg %}
-          <li class="nav-item">
-            <span class="nav-link">{{ greeting_msg }}</span>
-          </li>
-          {% endif %}
+            {% if greeting_msg %}
+              <li class="nav-item">
+                <span class="nav-link">{{ greeting_msg }}</span>
+              </li>
+            {% endif %}
 
-          <li class="nav-item">
-            <a class="nav-link" href="{% url 'login' %}?next={{ request.path }}">Login</a>
-          </li>
-          <li class="nav-item">
-            <a class="nav-link" href="{% url 'signup' %}">Sign Up</a>
-          </li>
-        </ul>
+            <li class="nav-item">
+              <a class="nav-link" href="{% url 'login' %}?next={{ request.path }}">Login</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="{% url 'signup' %}">Sign Up</a>
+            </li>
+          </ul>
         {% endif %}
 
         <ul class="navbar-nav me-0">
