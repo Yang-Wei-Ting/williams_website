@@ -1,9 +1,8 @@
 import datetime
 from django.http import HttpResponseRedirect
 from django.shortcuts import render
-from django.contrib.auth.models import User
 
-from .models import Product, Order
+from .models import Product
 from .forms import OrderForm
 
 
