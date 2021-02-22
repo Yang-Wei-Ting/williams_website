@@ -1,10 +1,10 @@
 import datetime
 from django.http import HttpResponseRedirect
 from django.shortcuts import render
-from django.views.generic import DetailView
 from django.contrib.auth.models import User
 
 from .models import Product, Order
+from .forms import OrderForm
 
 
 def product_category_list_view(request):
@@ -67,35 +67,22 @@ def product_vendor_list_view(request):
     return render(request, 'shop/product_vendor_list.html', locals())
 
 
-class ProductDetailView(DetailView):
-    model = Product
-    template_name = 'shop/product_detail.html'
-    context_object_name = 'prod'
-
-    def get_context_data(self, **kwargs):
-        context = super().get_context_data(**kwargs)
-        current_time = datetime.datetime.now()
-        context['current_time'] = current_time
-        context['current_hour'] = current_time.timetuple().tm_hour
-        return context
-
-
-def thanks_view(request, pk):
-    try:
-        cust = User.objects.get(id=request.user.id)
-        prod = Product.objects.get(id=pk)
-        order_quantity = int(request.POST["order_quantity"])
-        order_totalprice = prod.prod_price * order_quantity
-        order = Order.objects.create(
-            cust_id=cust,
-            prod_id=prod,
-            order_quantity=order_quantity,
-            order_totalprice=order_totalprice
-        )
-    except (User.DoesNotExist, Product.DoesNotExist, KeyError):
-        return HttpResponseRedirect("/")
-
+def product_detail_view(request, pk):
+    prod = Product.objects.get(id=pk)
     current_time = datetime.datetime.now()
     current_hour = current_time.timetuple().tm_hour
+    purchased = False
 
-    return render(request, 'shop/thanks.html', locals())
+    if request.method == 'POST':
+        form = OrderForm(request.POST)
+        if form.is_valid():
+            order = form.save(commit=False)
+            order.cust_id = request.user
+            order.prod_id = prod
+            order.order_totalprice = prod.prod_price * form.cleaned_data['order_quantity']
+            order.save()
+            purchased = True
+    else:
+        form = OrderForm(request.POST)
+
+    return render(request, 'shop/product_detail.html', locals())
