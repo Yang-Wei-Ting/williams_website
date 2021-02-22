@@ -1,14 +1,8 @@
 from django import forms
+from django.contrib.auth.models import User
 
 
-class SignupForm(forms.Form):
-    username = forms.CharField(
-        label='',
-        max_length=50,
-        widget=forms.TextInput
-    )
-    password = forms.CharField(
-        label='',
-        max_length=50,
-        widget=forms.PasswordInput
-    )
+class SignupForm(forms.ModelForm):
+    class Meta:
+        model = User
+        fields = ['username', 'password']
