@@ -24,8 +24,8 @@
   <form action="{% url 'signup' %}" method="POST">
     {% csrf_token %}
     {% load widget_tweaks %}
-    {{ form.username  | attr:"placeholder:Enter your username"       | attr:"class:form-control" | attr:"autofocus" }}
-    {{ form.password1 | attr:"placeholder:Enter your password"       | attr:"class:form-control" }}
+    {{ form.username  | attr:"placeholder:Set your username"         | attr:"class:form-control" | attr:"autofocus" }}
+    {{ form.password1 | attr:"placeholder:Set your password"         | attr:"class:form-control" }}
     {{ form.password2 | attr:"placeholder:Enter your password again" | attr:"class:form-control" }}
     <input type="submit" value="Sign Up" class="w-100 btn btn-primary mt-3">
   </form>
