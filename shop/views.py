@@ -83,6 +83,6 @@ def product_detail_view(request, pk):
             order.save()
             purchased = True
     else:
-        form = OrderForm(request.POST)
+        form = OrderForm()
 
     return render(request, 'shop/product_detail.html', locals())
