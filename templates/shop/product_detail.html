@@ -8,8 +8,6 @@
   {% load static %}
   <link rel="stylesheet" href="{% static 'css/shop/base_list_and_detail.css' %}">
   <link rel="stylesheet" href="{% static 'css/shop/base_detail.css' %}">
-  {% load humanize %}
-  {% load widget_tweaks %}
 {% endblock loading %}
 
 {% block content %}
@@ -21,6 +19,8 @@
       <hr class="featurette-divider">
       <div class="row featurette">
         <div class="col-md-7 order-md-2 prod_text">
+          {% load humanize %}
+
           {% if purchased %}
             <p class="lead heavier">
               Thank you for ordering {{ prod }} x{{ order.order_quantity }}<br>
@@ -38,6 +38,7 @@
               <form action="{% url 'product_detail' prod.id %}" method="POST">
                 {% csrf_token %}
                 <label class="lead heavier me-2">
+                  {% load widget_tweaks %}
                   Quantity {{ form.order_quantity | attr:"min:0" | attr:"max:99" | attr:"value:1" }}
                 </label>
                 <input type="submit" value="Order Now!" class="btn btn-primary mb-2">
