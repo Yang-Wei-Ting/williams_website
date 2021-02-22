@@ -1,5 +1,4 @@
 import datetime
-from django.http import HttpResponseRedirect
 from django.shortcuts import render
 
 from .models import Product
@@ -67,7 +66,7 @@ def product_detail_view(request, pk):
     current_time = datetime.datetime.now()
     current_hour = current_time.timetuple().tm_hour
     purchased = False
-    
+
     if request.user.is_authenticated:
         if request.method == 'POST':
             form = OrderForm(request.POST)

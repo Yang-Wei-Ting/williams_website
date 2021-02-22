@@ -17,14 +17,14 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 
 
 # See https://docs.djangoproject.com/en/3.1/howto/deployment/checklist/
-dotenv_file = str(BASE_DIR.joinpath('.env'))
-if os.path.isfile(dotenv_file):
-    dotenv.load_dotenv(dotenv_file)
+DOTENV_FILE = str(BASE_DIR.joinpath('.env'))
+if os.path.isfile(DOTENV_FILE):
+    dotenv.load_dotenv(DOTENV_FILE)
 
 SECRET_KEY = os.environ['SECRET_KEY']
 
 DEBUG = False
-if DEBUG == True:
+if DEBUG is True:
     ALLOWED_HOSTS = []
 else:
     ALLOWED_HOSTS = ['.herokuapp.com', 'localhost', '127.0.0.1']
