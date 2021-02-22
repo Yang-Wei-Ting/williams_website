@@ -6,17 +6,27 @@
 
 {% block login_or_signup %}
   {% if form.errors %}
-    <p class="mb-4 text-muted smaller">{{ form.username.errors }}</p>
-    <p class="mb-4 text-muted smaller">{{ form.password1.errors }}</p>
-    <p class="mb-4 text-muted smaller">{{ form.password2.errors }}</p>
+    <p class="mb-4 text-muted smaller">
+      {% for error in form.username.errors %}
+        {{ error | escape }}<br>
+      {% endfor %}
+
+      {% for error in form.password1.errors %}
+        {{ error | escape }}<br>
+      {% endfor %}
+
+      {% for error in form.password2.errors %}
+        {{ error | escape }}<br>
+      {% endfor %}
+    </p>
   {% endif %}
 
   <form action="{% url 'signup' %}" method="POST">
     {% csrf_token %}
     {% load widget_tweaks %}
-    {{ form.username|attr:"placeholder:Enter your username"|attr:"class:form-control"|attr:"autofocus" }}
-    {{ form.password1|attr:"placeholder:Enter your password"|attr:"class:form-control" }}
-    {{ form.password2|attr:"placeholder:Enter your password again"|attr:"class:form-control" }}
+    {{ form.username  | attr:"placeholder:Enter your username"       | attr:"class:form-control" | attr:"autofocus" }}
+    {{ form.password1 | attr:"placeholder:Enter your password"       | attr:"class:form-control" }}
+    {{ form.password2 | attr:"placeholder:Enter your password again" | attr:"class:form-control" }}
     <input type="submit" value="Sign Up" class="w-100 btn btn-primary mt-3">
   </form>
 

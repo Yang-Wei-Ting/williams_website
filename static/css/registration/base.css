@@ -32,8 +32,3 @@ body {
 p.text-muted.smaller {
   font-size: x-small;
 }
-
-ul.errorlist {
-  font-size: x-small;
-  text-align: left;
-}
