@@ -67,17 +67,18 @@ def product_detail_view(request, pk):
     current_time = datetime.datetime.now()
     current_hour = current_time.timetuple().tm_hour
     purchased = False
-
-    if request.method == 'POST':
-        form = OrderForm(request.POST)
-        if form.is_valid():
-            order = form.save(commit=False)
-            order.cust_id = request.user
-            order.prod_id = prod
-            order.order_totalprice = prod.prod_price * form.cleaned_data['order_quantity']
-            order.save()
-            purchased = True
-    else:
-        form = OrderForm()
+    
+    if request.user.is_authenticated:
+        if request.method == 'POST':
+            form = OrderForm(request.POST)
+            if form.is_valid():
+                order = form.save(commit=False)
+                order.cust_id = request.user
+                order.prod_id = prod
+                order.order_totalprice = prod.prod_price * form.cleaned_data['order_quantity']
+                order.save()
+                purchased = True
+        else:
+            form = OrderForm()
 
     return render(request, 'shop/product_detail.html', locals())
