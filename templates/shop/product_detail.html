@@ -9,6 +9,7 @@
   <link rel="stylesheet" href="{% static 'css/shop/base_list_and_detail.css' %}">
   <link rel="stylesheet" href="{% static 'css/shop/base_detail.css' %}">
   {% load humanize %}
+  {% load widget_tweaks %}
 {% endblock loading %}
 
 {% block content %}
@@ -37,7 +38,7 @@
               <form action="{% url 'product_detail' prod.id %}" method="POST">
                 {% csrf_token %}
                 <label class="lead heavier me-2">
-                  Quantity <input type="number" name="order_quantity" min="0" max="99" value="1">
+                  Quantity {{ form.order_quantity | attr:"min:0" | attr:"max:99" | attr:"value:1" }}
                 </label>
                 <input type="submit" value="Order Now!" class="btn btn-primary mb-2">
               </form>

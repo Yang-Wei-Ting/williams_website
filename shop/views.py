@@ -17,7 +17,6 @@ def product_category_list_view(request):
       ON shop_product.prodcat_id_id = shop_productcategory.id
     WHERE shop_productcategory.prodcat_name = '?????';
     '''
-
     books_movies_music__prods  = a = prods.filter(prodcat_id__prodcat_name="Books, Movies & Music")
     business_industrial__prods = b = prods.filter(prodcat_id__prodcat_name="Business & Industrial")
     collectibles_art__prods    = c = prods.filter(prodcat_id__prodcat_name="Collectibles & Art")
@@ -30,7 +29,6 @@ def product_category_list_view(request):
     sportinggoods__prods       = j = prods.filter(prodcat_id__prodcat_name="Sporting Goods")
     toys_hobbies__prods        = k = prods.filter(prodcat_id__prodcat_name="Toys & Hobbies")
     others__prods              = l = prods.filter(prodcat_id__prodcat_name="Others")
-
     prods_group = (a, b, c, d, e, f, g, h, i, j, k, l)
 
     return render(request, 'shop/product_category_list.html', locals())
@@ -47,7 +45,6 @@ def product_vendor_list_view(request):
       ON shop_product.vend_id_id = shop_vendor.id
     WHERE shop_vendor.vend_name = '?????';
     '''
-
     abibas__prods     = a = prods.filter(vend_id__vend_name="Abibas")
     banana__prods     = b = prods.filter(vend_id__vend_name="Banana")
     f4fashion__prods  = c = prods.filter(vend_id__vend_name="F 4 Fashion")
@@ -60,7 +57,6 @@ def product_vendor_list_view(request):
     toysrthem__prods  = j = prods.filter(vend_id__vend_name="Toys R Them")
     wcdonalds__prods  = k = prods.filter(vend_id__vend_name="WcDonald's")
     unknown__prods    = l = prods.filter(vend_id__vend_name="Unknown")
-
     prods_group = (a, b, c, d, e, f, g, h, i, j, k, l)
 
     return render(request, 'shop/product_vendor_list.html', locals())
