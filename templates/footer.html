@@ -3,10 +3,11 @@
     {% load static %}
     <img src="{% static 'images/logo.gif' %}" alt="logo" id="footer_logo">
     <span class="footer text-muted">© 2021 Wei-Ting Yang. All rights reserved.</span>
-    <span class="float-end time">
-      {% if current_time %}
+  
+    {% if current_time %}
+      <span class="float-end time">
         Current Time: {{ current_time }}
-      {% endif %}
-    </span>
+      </span>
+    {% endif %}
   </div>
 </footer>
