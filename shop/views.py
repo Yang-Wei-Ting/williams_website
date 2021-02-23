@@ -6,7 +6,6 @@ from .forms import OrderForm
 
 
 def product_category_list_view(request):
-    prods = Product.objects.all()
     current_time = datetime.datetime.now()
     current_hour = current_time.timetuple().tm_hour
 
@@ -16,6 +15,7 @@ def product_category_list_view(request):
       ON shop_product.prodcat_id_id = shop_productcategory.id
     WHERE shop_productcategory.prodcat_name = '?????';
     '''
+    prods = Product.objects.all()
     books_movies_music__prods  = a = prods.filter(prodcat_id__prodcat_name="Books, Movies & Music")
     business_industrial__prods = b = prods.filter(prodcat_id__prodcat_name="Business & Industrial")
     collectibles_art__prods    = c = prods.filter(prodcat_id__prodcat_name="Collectibles & Art")
@@ -30,11 +30,15 @@ def product_category_list_view(request):
     others__prods              = l = prods.filter(prodcat_id__prodcat_name="Others")
     prods_group = (a, b, c, d, e, f, g, h, i, j, k, l)
 
-    return render(request, 'shop/product_category_list.html', locals())
+    context = {
+        'current_time': current_time,
+        'current_hour': current_hour,
+        'prods_group': prods_group,
+    }
+    return render(request, 'shop/product_category_list.html', context=context)
 
 
 def product_vendor_list_view(request):
-    prods = Product.objects.all()
     current_time = datetime.datetime.now()
     current_hour = current_time.timetuple().tm_hour
 
@@ -44,6 +48,7 @@ def product_vendor_list_view(request):
       ON shop_product.vend_id_id = shop_vendor.id
     WHERE shop_vendor.vend_name = '?????';
     '''
+    prods = Product.objects.all()
     abibas__prods     = a = prods.filter(vend_id__vend_name="Abibas")
     banana__prods     = b = prods.filter(vend_id__vend_name="Banana")
     f4fashion__prods  = c = prods.filter(vend_id__vend_name="F 4 Fashion")
@@ -58,7 +63,12 @@ def product_vendor_list_view(request):
     unknown__prods    = l = prods.filter(vend_id__vend_name="Unknown")
     prods_group = (a, b, c, d, e, f, g, h, i, j, k, l)
 
-    return render(request, 'shop/product_vendor_list.html', locals())
+    context = {
+        'current_time': current_time,
+        'current_hour': current_hour,
+        'prods_group': prods_group,
+    }
+    return render(request, 'shop/product_vendor_list.html', context=context)
 
 
 def product_detail_view(request, pk):
