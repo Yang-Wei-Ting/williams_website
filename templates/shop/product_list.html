@@ -1,6 +1,7 @@
 {% extends 'base.html' %}
 
 {% block title %}
+  My Imaginary Shop - Browse by {{ browse_by }}
 {% endblock title %}
 
 {% block css %}
@@ -29,8 +30,11 @@
                         data-bs-toggle="collapse" data-bs-target="#collapse{{ forloop.parentloop.counter }}"
                         aria-expanded="false" aria-controls="collapse{{ forloop.parentloop.counter }}">
 
-                  {% block base_list %}
-                  {% endblock base_list %}
+                  {% if browse_by == "Category" %}
+                    {{ prod.prodcat_id }}
+                  {% elif browse_by == "Vendor" %}
+                    {{ prod.vend_id }}
+                  {% endif %}
 
                 </button>
               </h4>
