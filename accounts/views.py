@@ -1,7 +1,6 @@
+from django.contrib.auth.forms import UserCreationForm
 from django.http import HttpResponseRedirect
 from django.shortcuts import render
-
-from django.contrib.auth.forms import UserCreationForm
 
 
 def signup_view(request):
@@ -12,4 +11,5 @@ def signup_view(request):
             return HttpResponseRedirect('/accounts/login/')
     else:
         form = UserCreationForm()
+
     return render(request, 'registration/signup.html', context={'form': form})
