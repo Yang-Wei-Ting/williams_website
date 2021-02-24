@@ -26,16 +26,16 @@
             <li class="nav-item user-name">
               <span class="nav-link">
 
-                {% if 6 <= current_hour and current_hour < 12 %}
-                  Good Morning
-                {% elif 12 <= current_hour and current_hour < 17 %}
-                  Good Afternoon
-                {% elif 17 <= current_hour and current_hour < 20 %}
-                  Good Evening
-                {% elif 20 <= current_hour and current_hour < 24 %}
-                  Good Night
-                {% else %}
+                {% if current_hour < 6 %}
                   Hello
+                {% elif current_hour < 12 %}
+                  Good Morning
+                {% elif current_hour < 17 %}
+                  Good Afternoon
+                {% elif current_hour < 20 %}
+                  Good Evening
+                {% else %}
+                  Good Night
                 {% endif %}
 
                 {{ user.get_username }}!
