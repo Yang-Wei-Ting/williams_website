@@ -48,7 +48,7 @@ def product_detail_view(request, pk):
     prod = Product.objects.get(id=pk)
     current_time = datetime.datetime.now()
     current_hour = current_time.timetuple().tm_hour
-    purchased = False
+    purchased, order, form = False, None, None
 
     if request.user.is_authenticated:
         if request.method == 'POST':
@@ -63,4 +63,12 @@ def product_detail_view(request, pk):
         else:
             form = OrderForm()
 
-    return render(request, 'shop/product_detail.html', locals())
+    context = {
+        'prod': prod,
+        'current_time': current_time,
+        'current_hour': current_hour,
+        'purchased': purchased,
+        'order': order,
+        'form': form,
+    }
+    return render(request, 'shop/product_detail.html', context=context)

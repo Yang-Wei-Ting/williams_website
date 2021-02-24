@@ -6,7 +6,7 @@ from .models import HomeCaption
 
 def home_view(request):
     if request.session.get("visited", False):
-        greeting_msg = "Welcome back!"
+        greeting_msg = "Welcome Back!"
     else:
         greeting_msg = ""
         request.session["visited"] = True
