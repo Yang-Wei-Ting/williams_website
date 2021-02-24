@@ -17,18 +17,12 @@ def product_list_view(request, browse_by):
           ON shop_product.prodcat_id_id = shop_productcategory.id
         WHERE shop_productcategory.prodcat_name = '?????';
         '''
-        books_movies_music__prods  = a = prods.filter(prodcat_id__prodcat_name="Books, Movies & Music")
-        business_industrial__prods = b = prods.filter(prodcat_id__prodcat_name="Business & Industrial")
-        collectibles_art__prods    = c = prods.filter(prodcat_id__prodcat_name="Collectibles & Art")
-        electronics__prods         = d = prods.filter(prodcat_id__prodcat_name="Electronics")
-        fashion__prods             = e = prods.filter(prodcat_id__prodcat_name="Fashion")
-        food__prods                = f = prods.filter(prodcat_id__prodcat_name="Food")
-        health_beauty__prods       = g = prods.filter(prodcat_id__prodcat_name="Health & Beauty")
-        home_garden__prods         = h = prods.filter(prodcat_id__prodcat_name="Home & Garden")
-        motors__prods              = i = prods.filter(prodcat_id__prodcat_name="Motors")
-        sportinggoods__prods       = j = prods.filter(prodcat_id__prodcat_name="Sporting Goods")
-        toys_hobbies__prods        = k = prods.filter(prodcat_id__prodcat_name="Toys & Hobbies")
-        others__prods              = l = prods.filter(prodcat_id__prodcat_name="Others")
+        categories = ("Books, Movies & Music", "Business & Industrial",
+                      "Collectibles & Art", "Electronics", "Fashion", "Food",
+                      "Health & Beauty", "Home & Garden", "Motors",
+                      "Sporting Goods", "Toys & Hobbies", "Others")
+        prods_group = (prods.filter(prodcat_id__prodcat_name=category) for category in categories)
+
     elif browse_by == 'Vendor':
         '''
         SELECT shop_product.*
@@ -36,24 +30,16 @@ def product_list_view(request, browse_by):
           ON shop_product.vend_id_id = shop_vendor.id
         WHERE shop_vendor.vend_name = '?????';
         '''
-        abibas__prods     = a = prods.filter(vend_id__vend_name="Abibas")
-        banana__prods     = b = prods.filter(vend_id__vend_name="Banana")
-        f4fashion__prods  = c = prods.filter(vend_id__vend_name="F 4 Fashion")
-        fink__prods       = d = prods.filter(vend_id__vend_name="Fink Manufacturing")
-        microhard__prods  = e = prods.filter(vend_id__vend_name="Microhard")
-        mike__prods       = f = prods.filter(vend_id__vend_name="Mike")
-        penguin__prods    = g = prods.filter(vend_id__vend_name="Penguin Inc")
-        programing__prods = h = prods.filter(vend_id__vend_name="Programing Press")
-        ryan__prods       = i = prods.filter(vend_id__vend_name="Ryan Industries")
-        toysrthem__prods  = j = prods.filter(vend_id__vend_name="Toys R Them")
-        wcdonalds__prods  = k = prods.filter(vend_id__vend_name="WcDonald's")
-        unknown__prods    = l = prods.filter(vend_id__vend_name="Unknown")
+        vendors = ("Abibas", "Banana", "F 4 Fashion", "Fink Manufacturing",
+                   "Microhard", "Mike", "Penguin Inc", "Programing Press",
+                   "Ryan Industries", "Toys R Them", "WcDonald's", "Unknown")
+        prods_group = (prods.filter(vend_id__vend_name=vendor) for vendor in vendors)
 
     context = {
         'browse_by': browse_by,
         'current_time': current_time,
         'current_hour': current_hour,
-        'prods_group': (a, b, c, d, e, f, g, h, i, j, k, l),
+        'prods_group': prods_group,
     }
     return render(request, 'shop/product_list.html', context=context)
 
