@@ -1,15 +1,20 @@
+from django.views import View
 from django.contrib.auth.forms import UserCreationForm
-from django.http import HttpResponseRedirect
 from django.shortcuts import render
+from django.http import HttpResponseRedirect
 
 
-def signup_view(request):
-    if request.method == 'POST':
-        form = UserCreationForm(request.POST)
+class SignupView(View):
+    form_class = UserCreationForm
+    template_name = 'registration/signup.html'
+
+    def get(self, request, *args, **kwargs):
+        form = self.form_class()
+        return render(request, self.template_name, context={'form': form})
+
+    def post(self, request, *args, **kwargs):
+        form = self.form_class(request.POST)
         if form.is_valid():
             form.save()
             return HttpResponseRedirect('/accounts/login/')
-    else:
-        form = UserCreationForm()
-
-    return render(request, 'registration/signup.html', context={'form': form})
+        return render(request, self.template_name, context={'form': form})
