@@ -5,11 +5,12 @@ from .models import Product
 from .forms import OrderForm
 
 
-def product_list_view(request, browse_by):
-    current_time = datetime.datetime.now()
-    current_hour = current_time.timetuple().tm_hour
+current_time = datetime.datetime.now()
+current_hour = current_time.timetuple().tm_hour
+prods = Product.objects.all()
 
-    prods = Product.objects.all()
+
+def product_list_view(request, browse_by):
     if browse_by == 'Category':
         '''
         SELECT shop_product.*
@@ -45,9 +46,7 @@ def product_list_view(request, browse_by):
 
 
 def product_detail_view(request, pk):
-    prod = Product.objects.get(id=pk)
-    current_time = datetime.datetime.now()
-    current_hour = current_time.timetuple().tm_hour
+    prod = prods.get(id=pk)
     purchased, order, form = False, None, None
 
     if request.user.is_authenticated:
