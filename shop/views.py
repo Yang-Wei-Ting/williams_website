@@ -18,11 +18,11 @@ def product_list_view(request, browse_by):
           ON shop_product.prodcat_id_id = shop_productcategory.id
         WHERE shop_productcategory.prodcat_name = '?????';
         '''
-        categories = ("Books, Movies & Music", "Business & Industrial",
-                      "Collectibles & Art", "Electronics", "Fashion", "Food",
-                      "Health & Beauty", "Home & Garden", "Motors",
-                      "Sporting Goods", "Toys & Hobbies", "Others")
-        prods_group = (prods.filter(prodcat_id__prodcat_name=category) for category in categories)
+        prodcat_names = ("Books, Movies & Music", "Business & Industrial",
+                         "Collectibles & Art", "Electronics", "Fashion", "Food",
+                         "Health & Beauty", "Home & Garden", "Motors",
+                         "Sporting Goods", "Toys & Hobbies", "Others")
+        prods_group = (prods.filter(prodcat_id__prodcat_name=prodcat_name) for prodcat_name in prodcat_names)
 
     elif browse_by == 'Vendor':
         '''
@@ -31,10 +31,10 @@ def product_list_view(request, browse_by):
           ON shop_product.vend_id_id = shop_vendor.id
         WHERE shop_vendor.vend_name = '?????';
         '''
-        vendors = ("Abibas", "Banana", "F 4 Fashion", "Fink Manufacturing",
-                   "Microhard", "Mike", "Penguin Inc", "Programing Press",
-                   "Ryan Industries", "Toys R Them", "WcDonald's", "Unknown")
-        prods_group = (prods.filter(vend_id__vend_name=vendor) for vendor in vendors)
+        vend_names = ("Abibas", "Banana", "F 4 Fashion", "Fink Manufacturing",
+                      "Microhard", "Mike", "Penguin Inc", "Programing Press",
+                      "Ryan Industries", "Toys R Them", "WcDonald's", "Unknown")
+        prods_group = (prods.filter(vend_id__vend_name=vend_name) for vend_name in vend_names)
 
     context = {
         'browse_by': browse_by,
