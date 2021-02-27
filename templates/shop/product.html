@@ -31,7 +31,7 @@
                 {% csrf_token %}
                 <label class="lead heavier me-2">
                   {% load widget_tweaks %}
-                  Quantity {{ form.order_quantity | attr:"min:0" | attr:"max:99" | attr:"value:1" }}
+                  Quantity {{ form.order_quantity | attr:"min:1" | attr:"max:99" | attr:"value:1" }}
                 </label>
                 <input type="submit" value="Order Now!" class="btn btn-primary mb-2">
               </form>
