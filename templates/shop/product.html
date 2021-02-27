@@ -14,7 +14,7 @@
 
           {% if user.is_authenticated and purchased %}
             <p class="lead heavier">
-              Thank you for ordering {{ product }} x{{ order.order_quantity }}<br>
+              Thank you for ordering {{ product }} (x{{ order.order_quantity }})
               on {{ order.order_date }} {{ user.get_username }}!<br><br>
               The total payment is NT$ {{ order.order_totalprice | floatformat:0 | intcomma }}.<br><br>
               Please note that no items will show up at your door!
