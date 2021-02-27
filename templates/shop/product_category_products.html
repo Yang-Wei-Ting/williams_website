@@ -5,5 +5,12 @@
 {% endblock subtitle %}
 
 {% block subcontent %}
-  <p><a href="{% url 'product' object.id %}">{{ object }}</a></p>
+  {% load static %}
+  <img class="bd-placeholder-img card-img-top" src="{% static 'images/'|add:object.prod_imgname %}" alt="Product Image"
+       width="100%" preserveAspectRatio="xMidYMid slice" focusable="false">
+  <div class="card-body">
+    <h5 class="card-title">
+      <p><a href="{% url 'product' object.id %}">{{ object }}</a></p>
+    </h5>
+  </div>
 {% endblock subcontent %}

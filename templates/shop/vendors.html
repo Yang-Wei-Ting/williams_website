@@ -5,5 +5,9 @@
 {% endblock subtitle %}
 
 {% block subcontent %}
-  <p><a href="{% url 'vendor_products' object.id %}">{{ object }}</a></p>
+  <div class="card-body">
+    <h5 class="card-title">
+      <p><a href="{% url 'vendor_products' object.id %}">{{ object }}</a></p>
+    </h5>
+  </div>
 {% endblock subcontent %}
