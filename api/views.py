@@ -5,13 +5,13 @@ from .permissions import IsSuperuserOrReadOnly
 from .serializers import ProductSerializer
 
 
-class ProductList(ListCreateAPIView):
+class ProductsAPIView(ListCreateAPIView):
     permission_classes = (IsSuperuserOrReadOnly,)
     queryset = Product.objects.all()
     serializer_class = ProductSerializer
 
 
-class ProductDetail(RetrieveUpdateDestroyAPIView):
+class ProductAPIView(RetrieveUpdateDestroyAPIView):
     permission_classes = (IsSuperuserOrReadOnly,)
     queryset = Product.objects.all()
     serializer_class = ProductSerializer
