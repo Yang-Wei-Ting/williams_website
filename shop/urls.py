@@ -1,4 +1,5 @@
 from django.urls import path
+from django.views.generic import RedirectView
 
 from .views import (
     ProductCategoriesView,
@@ -11,6 +12,10 @@ from .views import (
 
 
 urlpatterns = [
+    path('',                             RedirectView.as_view(url='products/', permanent=True)),
+    path('product-categories/<int:pk>/', RedirectView.as_view(url='products/', permanent=True)),
+    path('vendors/<int:pk>/',            RedirectView.as_view(url='products/', permanent=True)),
+
     path('product-categories/',                   ProductCategoriesView.as_view(),       name='product_categories'),
     path('product-categories/<int:pk>/products/', ProductCategoryProductsView.as_view(), name='product_category_products'),
     path('vendors/',                              VendorsView.as_view(),                 name='vendors'),
