@@ -9,11 +9,14 @@
       <div class="collapse navbar-collapse" id="navbarCollapse">
         <ul class="navbar-nav me-auto mb-2 mb-md-0">
           <li class="nav-item dropdown">
-            <span class="nav-link dropdown-toggle" id="dropdown" data-bs-toggle="dropdown" aria-expanded="false">My Imaginary Shop</span>
+            <span class="nav-link dropdown-toggle" id="dropdown" data-bs-toggle="dropdown" aria-expanded="false">
+              My Imaginary Shop
+            </span>
             <ul class="dropdown-menu" aria-labelledby="dropdown">
-              <li><a class="dropdown-item" href="{% url 'product_category_list' %}">Browse by Category</a></li>
-              <li><a class="dropdown-item" href="{% url 'product_vendor_list' %}">Browse by Vendor</a></li>
-              <li><a class="dropdown-item" href="{% url 'product_list_api' %}">Product List API</a></li>
+              <li><a class="dropdown-item" href="{% url 'product_categories' %}">Product Categories</a></li>
+              <li><a class="dropdown-item" href="{% url 'vendors' %}">Vendors</a></li>
+              <li><a class="dropdown-item" href="{% url 'products' %}">Products</a></li>
+              <li><a class="dropdown-item" href="{% url 'products_api' %}">Products API</a></li>
             </ul>
           </li>
           <li class="nav-item">
@@ -47,18 +50,14 @@
           </ul>
         {% else %}
           <ul class="navbar-nav me-0">
-
-            {% if greeting_msg %}
-              <li class="nav-item">
-                <span class="nav-link">{{ greeting_msg }}</span>
-              </li>
-            {% endif %}
-
+            <li class="nav-item">
+              <span class="nav-link">{{ greeting_msg }}</span>
+            </li>
             <li class="nav-item">
               <a class="nav-link" href="{% url 'login' %}?next={{ request.path }}">Login</a>
             </li>
             <li class="nav-item">
-              <a class="nav-link" href="{% url 'signup' %}">Sign Up</a>
+              <a class="nav-link" href="{% url 'signup' %}">Signup</a>
             </li>
           </ul>
         {% endif %}
@@ -66,9 +65,9 @@
         <ul class="navbar-nav me-0">
           <li class="nav-item">
             {% load static %}
-            <audio src="{% static 'audio/welcome_to_columbia.mp3' %}" loop="true" id="music"></audio>
-            <button type="button" onclick="playAudio()" class="btn btn-secondary nav-link">
-              <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-music-note-beamed" viewBox="0 0 16 16">
+            <audio id="music" src="{% static 'audio/welcome_to_columbia.mp3' %}" loop="true"></audio>
+            <button class="btn btn-secondary nav-link" type="button" onclick="playAudio()">
+              <svg class="bi bi-music-note-beamed" xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" viewBox="0 0 16 16">
                 <path d="M6 13c0 1.105-1.12 2-2.5 2S1 14.105 1 13c0-1.104 1.12-2 2.5-2s2.5.896 2.5 2zm9-2c0 1.105-1.12 2-2.5 2s-2.5-.895-2.5-2 1.12-2 2.5-2 2.5.895 2.5 2z"></path>
                 <path fill-rule="evenodd" d="M14 11V2h1v9h-1zM6 3v10H5V3h1z"></path>
                 <path d="M5 2.905a1 1 0 0 1 .9-.995l8-.8a1 1 0 0 1 1.1.995V3L5 4V2.905z"></path>

@@ -1,36 +1,53 @@
-{% extends "registration/base.html" %}
+{% extends "base.html" %}
 
 {% block title %}
-  Sign Up
+  Signup
 {% endblock title %}
 
-{% block login_or_signup %}
-  {% if form.errors %}
-    <p class="mb-4 text-muted smaller">
-      {% for error in form.username.errors %}
-        {{ error | escape }}<br>
-      {% endfor %}
+{% block css %}
+  {% load static %}
+  <link rel="stylesheet" href="{% static 'css/registration/login_and_signup.css' %}">
+{% endblock css %}
 
-      {% for error in form.password1.errors %}
-        {{ error | escape }}<br>
-      {% endfor %}
+{% block header %}
+{% endblock header %}
 
-      {% for error in form.password2.errors %}
-        {{ error | escape }}<br>
-      {% endfor %}
+{% block content %}
+  <main class="text-center form-signin">
+    <a href="{% url 'home' %}"><img class="mb-3" src="{% static 'images/logo.gif' %}" alt="logo" width="120"></a>
+
+    {% if form.errors %}
+      <p class="mb-4 text-muted smaller">
+
+        {% for error in form.username.errors %}
+          {{ error | escape }}<br>
+        {% endfor %}
+
+        {% for error in form.password1.errors %}
+          {{ error | escape }}<br>
+        {% endfor %}
+
+        {% for error in form.password2.errors %}
+          {{ error | escape }}<br>
+        {% endfor %}
+
+      </p>
+    {% endif %}
+
+    <form action="{% url 'signup' %}" method="POST">
+      {% csrf_token %}
+      {% load widget_tweaks %}
+      {{ form.username  | attr:"class:form-control" | attr:"placeholder:Set your username" | attr:"autofocus" }}
+      {{ form.password1 | attr:"class:form-control" | attr:"placeholder:Set your password" }}
+      {{ form.password2 | attr:"class:form-control" | attr:"placeholder:Enter your password again" }}
+      <input type="submit" value="Signup" class="w-100 btn btn-primary mt-3">
+    </form>
+
+    <p class="text-muted smaller mt-4 mb-0">
+      <a href="{% url 'login' %}">Login</a> if you already have an account.
     </p>
-  {% endif %}
+  </main>
+{% endblock content %}
 
-  <form action="{% url 'signup' %}" method="POST">
-    {% csrf_token %}
-    {% load widget_tweaks %}
-    {{ form.username  | attr:"placeholder:Set your username"         | attr:"class:form-control" | attr:"autofocus" }}
-    {{ form.password1 | attr:"placeholder:Set your password"         | attr:"class:form-control" }}
-    {{ form.password2 | attr:"placeholder:Enter your password again" | attr:"class:form-control" }}
-    <input type="submit" value="Sign Up" class="w-100 btn btn-primary mt-3">
-  </form>
-
-  <p class="text-muted smaller mt-4 mb-0">
-    <a href="{% url 'login' %}">Login</a> if you already have an account.
-  </p>
-{% endblock login_or_signup %}
+{% block footer %}
+{% endblock footer %}

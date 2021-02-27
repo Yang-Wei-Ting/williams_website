@@ -10,11 +10,8 @@
 {% endblock css %}
 
 {% block content %}
-
-  {% include 'header.html' %}
-
   <main align="center">
-    <div id="home_carousel" class="carousel slide" data-bs-interval="false">
+    <div class="carousel slide" id="home_carousel" data-bs-interval="false">
       <ol class="carousel-indicators">
         <li data-bs-target="#home_carousel" data-bs-slide-to="0" class="active"></li>
         <li data-bs-target="#home_carousel" data-bs-slide-to="1"></li>
@@ -54,3 +51,6 @@
     </div>
   </main>
 {% endblock content %}
+
+{% block footer %}
+{% endblock footer %}

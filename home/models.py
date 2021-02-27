@@ -6,4 +6,4 @@ class HomeCaption(models.Model):
     text = models.TextField()
 
     def __str__(self):
-        return self.purpose[:50]
+        return self.purpose

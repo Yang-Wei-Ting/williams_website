@@ -1,13 +1,14 @@
 <footer class="footer mt-auto py-3 bg-light">
   <div class="container">
     {% load static %}
-    <img src="{% static 'images/logo.gif' %}" alt="logo" id="footer_logo">
+    <img id="footer_logo" src="{% static 'images/logo.gif' %}" alt="logo">
     <span class="footer text-muted">© 2021 Wei-Ting Yang. All rights reserved.</span>
-  
+
     {% if current_time %}
       <span class="float-end time">
         Current Time: {{ current_time }}
       </span>
     {% endif %}
+
   </div>
 </footer>
