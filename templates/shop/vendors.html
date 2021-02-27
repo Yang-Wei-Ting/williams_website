@@ -7,7 +7,7 @@
 {% block subcontent %}
   <div class="card-body">
     <h5 class="card-title">
-      <p><a href="{% url 'vendor_products' object.id %}">{{ object }}</a></p>
+      <a href="{% url 'vendor_products' object.id %}">{{ object }}</a>
     </h5>
   </div>
 {% endblock subcontent %}
