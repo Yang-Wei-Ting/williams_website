@@ -1,0 +1,9 @@
+{% extends 'shop/base.html' %}
+
+{% block subtitle %}
+  {{ product_category }}
+{% endblock subtitle %}
+
+{% block subcontent %}
+  <p><a href="{% url 'product' object.id %}">{{ object }}</a></p>
+{% endblock subcontent %}

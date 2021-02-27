@@ -1,53 +1,96 @@
-import datetime
+import datetime, itertools
+from django.views.generic import ListView
 from django.shortcuts import render
 
-from .models import Product
+from .models import ProductCategory, Vendor, Product
 from .forms import OrderForm
 
 
-current_time = datetime.datetime.now()
-current_hour = current_time.timetuple().tm_hour
-prods = Product.objects.all()
+def get_current_time_and_hour():
+    '''Returns a dictionary containing current_time and current_hour.'''
+
+    current_time = datetime.datetime.now()
+    current_hour = current_time.timetuple().tm_hour
+    return {'current_time': current_time, 'current_hour': current_hour}
 
 
-def product_list_view(request, browse_by):
-    if browse_by == 'Category':
-        '''
-        SELECT shop_product.*
-        FROM shop_product INNER JOIN shop_productcategory
-          ON shop_product.prodcat_id_id = shop_productcategory.id
-        WHERE shop_productcategory.prodcat_name = '?????';
-        '''
-        prodcat_names = ("Books, Movies & Music", "Business & Industrial",
-                         "Collectibles & Art", "Electronics", "Fashion", "Food",
-                         "Health & Beauty", "Home & Garden", "Motors",
-                         "Sporting Goods", "Toys & Hobbies", "Others")
-        prods_group = (prods.filter(prodcat_id__prodcat_name=prodcat_name) for prodcat_name in prodcat_names)
+class ProductCategoriesView(ListView):
+    '''A view that displays all product categories.'''
 
-    elif browse_by == 'Vendor':
-        '''
-        SELECT shop_product.*
-        FROM shop_product INNER JOIN shop_vendor
-          ON shop_product.vend_id_id = shop_vendor.id
-        WHERE shop_vendor.vend_name = '?????';
-        '''
-        vend_names = ("Abibas", "Banana", "F 4 Fashion", "Fink Manufacturing",
-                      "Microhard", "Mike", "Penguin Inc", "Programing Press",
-                      "Ryan Industries", "Toys R Them", "WcDonald's", "Unknown")
-        prods_group = (prods.filter(vend_id__vend_name=vend_name) for vend_name in vend_names)
+    queryset = list(itertools.chain(
+        ProductCategory.objects.exclude(prodcat_name='Others'),
+        ProductCategory.objects.filter(prodcat_name='Others')
+    ))
+    template_name = 'shop/product_categories.html'
 
-    context = {
-        'browse_by': browse_by,
-        'current_time': current_time,
-        'current_hour': current_hour,
-        'prods_group': prods_group,
-    }
-    return render(request, 'shop/product_list.html', context=context)
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        context.update(get_current_time_and_hour())
+        return context
 
 
-def product_detail_view(request, pk):
-    prod = prods.get(id=pk)
-    purchased, order, form = False, None, None
+class ProductCategoryProductsView(ListView):
+    '''A view that displays all products of a specific product category.'''
+
+    template_name = 'shop/product_category_products.html'
+
+    def get_queryset(self):
+        return Product.objects.filter(prodcat_id__id=self.kwargs['pk'])
+
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        context['product_category'] = self.get_queryset()[0].prodcat_id
+        context.update(get_current_time_and_hour())
+        return context
+
+
+class VendorsView(ListView):
+    '''A view that displays all vendors.'''
+
+    queryset = list(itertools.chain(
+        Vendor.objects.exclude(vend_name='Unknown'),
+        Vendor.objects.filter(vend_name='Unknown')
+    ))
+    template_name = 'shop/vendors.html'
+
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        context.update(get_current_time_and_hour())
+        return context
+
+
+class VendorProductsView(ListView):
+    '''A view that displays all products of a specific vendor.'''
+
+    template_name = 'shop/vendor_products.html'
+
+    def get_queryset(self):
+        return Product.objects.filter(vend_id__id=self.kwargs['pk'])
+
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        context['vendor'] = self.get_queryset()[0].vend_id
+        context.update(get_current_time_and_hour())
+        return context
+
+
+class ProductsView(ListView):
+    '''A view that displays all products.'''
+
+    model = Product
+    template_name = 'shop/products.html'
+
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        context.update(get_current_time_and_hour())
+        return context
+
+
+def product_view(request, pk):
+    '''A view that displays details of a specific product.'''
+
+    product = Product.objects.get(id=pk)
+    form, order, purchased = None, None, False
 
     if request.user.is_authenticated:
         if request.method == 'POST':
@@ -55,19 +98,18 @@ def product_detail_view(request, pk):
             if form.is_valid():
                 order = form.save(commit=False)
                 order.cust_id = request.user
-                order.prod_id = prod
-                order.order_totalprice = prod.prod_price * form.cleaned_data['order_quantity']
+                order.prod_id = product
+                order.order_totalprice = product.prod_price * form.cleaned_data['order_quantity']
                 order.save()
                 purchased = True
         else:
             form = OrderForm()
 
     context = {
-        'prod': prod,
-        'current_time': current_time,
-        'current_hour': current_hour,
-        'purchased': purchased,
-        'order': order,
+        'product': product,
         'form': form,
+        'order': order,
+        'purchased': purchased,
+        **get_current_time_and_hour(),
     }
-    return render(request, 'shop/product_detail.html', context=context)
+    return render(request, 'shop/product.html', context=context)

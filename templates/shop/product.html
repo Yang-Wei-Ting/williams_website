@@ -1,19 +1,10 @@
-{% extends 'base.html' %}
+{% extends 'shop/base.html' %}
 
-{% block title %}
-  {{ prod.prod_name }}
-{% endblock title %}
-
-{% block css %}
-  {% load static %}
-  <link rel="stylesheet" href="{% static 'css/shop/product_list_and_detail.css' %}">
-  <link rel="stylesheet" href="{% static 'css/shop/product_detail.css' %}">
-{% endblock css %}
+{% block subtitle %}
+  {{ product.prod_name }}
+{% endblock subtitle %}
 
 {% block content %}
-
-  {% include 'header.html' %}
-
   <main class="d-flex flex-column shop_main">
     <div class="container marketing">
       <hr class="featurette-divider">
@@ -21,21 +12,22 @@
         <div class="col-md-7 order-md-2 prod_text">
           {% load humanize %}
 
-          {% if purchased %}
+          {% if user.is_authenticated and purchased %}
             <p class="lead heavier">
-              Thank you for ordering {{ prod }} x{{ order.order_quantity }}<br>
+              Thank you for ordering {{ product }} x{{ order.order_quantity }}<br>
               on {{ order.order_date }} {{ user.get_username }}!<br><br>
               The total payment is NT$ {{ order.order_totalprice | floatformat:0 | intcomma }}.<br><br>
               Please note that no items will show up at your door!
             </p>
           {% else %}
-            <h1 class="featurette-heading">{{ prod.prod_name }}</h1>
-            <p class="lead heavier">Manufactured by {{ prod.vend_id }}</p>
-            <p class="lead heavier">{{ prod.prod_desc | linebreaksbr }}</p>
-            <p class="lead heavier">NT$ {{ prod.prod_price | floatformat:0 | intcomma }}</p>
+            <h1 class="featurette-heading">{{ product }}</h1>
+            <p class="lead heavier">Manufactured by {{ product.vend_id }}</p>
+            <p class="lead heavier">{{ product.prod_desc | linebreaksbr }}</p>
+            <p class="lead heavier">NT$ {{ product.prod_price | floatformat:0 | intcomma }}</p>
 
             {% if user.is_authenticated %}
-              <form action="{% url 'product_detail' prod.id %}" method="POST">
+
+              <form action="{% url 'product' product.id %}" method="POST">
                 {% csrf_token %}
                 <label class="lead heavier me-2">
                   {% load widget_tweaks %}
@@ -43,13 +35,17 @@
                 </label>
                 <input type="submit" value="Order Now!" class="btn btn-primary mb-2">
               </form>
+
             {% else %}
               <p class="lead heavier">Please login to order.</p>
             {% endif %}
+
           {% endif %}
+
         </div>
+        {% load static %}
         <div class="col-md-5 order-md-1 prod_img"
-             style="background-image: url({% static 'images/'|add:prod.prod_imgname %});
+             style="background-image: url({% static 'images/'|add:product.prod_imgname %});
                     background-size: contain;
                     background-repeat: no-repeat;
                     background-position: center;">
@@ -58,11 +54,14 @@
       <hr class="featurette-divider">
     </div>
   </main>
+{% endblock content %}
+
+{% block footer %}
   <footer class="footer mt-auto py-3 bg-light">
     <div class="container">
       <a class="text-muted" data-bs-toggle="tooltip" data-bs-placement="right"
-         title="{{ prod.prod_imgsrc }}">About the Image</a>
+         title="{{ product.prod_imgsrc }}">About the Image</a>
       <span class="float-end time">Current Time: {{ current_time }}</span>
     </div>
   </footer>
-{% endblock content %}
+{% endblock footer %}

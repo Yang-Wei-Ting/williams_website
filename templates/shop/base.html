@@ -1,0 +1,69 @@
+{% extends 'base.html' %}
+
+{% block title %}
+  My Imaginary Shop -
+
+  {% block subtitle %}
+  {% endblock subtitle %}
+
+{% endblock title %}
+
+{% block css %}
+  <style>
+    .bd-placeholder-img {
+      font-size: 1.125rem;
+      text-anchor: middle;
+      -webkit-user-select: none;
+      -moz-user-select: none;
+      user-select: none;
+    }
+
+    @media (min-width: 768px) {
+      .bd-placeholder-img-lg {
+        font-size: 3.5rem;
+      }
+    }
+  </style>
+  {% load static %}
+  <link rel="stylesheet" href="{% static 'css/shop/base.css' %}">
+{% endblock css %}
+
+{% block content %}
+  <main class="shop_main">
+    <div class="container py-5">
+      <div class="row" data-masonry="{&quot;percentPosition&quot;: true}" style="position: relative; height: 860px;">
+
+        {% for object in object_list %}
+          <div class="col-sm-6 col-lg-4 mb-4" style="position: absolute; left: 0%; top: 0px;">
+            <div class="card">
+              <svg class="bd-placeholder-img card-img-top" width="100%" height="200" xmlns="http://www.w3.org/2000/svg"
+                   role="img" aria-label="Placeholder: Image cap" preserveAspectRatio="xMidYMid slice" focusable="false">
+                <title>Placeholder</title>
+                <rect width="100%" height="100%" fill="#868e96"></rect>
+                <text x="50%" y="50%" fill="#dee2e6" dy=".3em">Image cap</text>
+              </svg>
+              <div class="card-body">
+                <h5 class="card-title">
+
+                  {% block subcontent %}
+                  {% endblock subcontent %}
+
+                </h5>
+              </div>
+            </div>
+          </div>
+        {% endfor %}
+
+      </div>
+    </div>
+  </main>
+  <script async=""
+          src="{% static 'js/masonry.pkgd.min.js' %}"
+          integrity="sha384-GNFwBvfVxBkLMJpYMOABq3c+d3KnQxudP/mGPkzpZSTYykLBNsZEnG2D9G/X/+7D"
+          crossorigin="anonymous">
+  </script>
+{% endblock content %}
+
+{% block footer %}
+  {% include 'footer.html' %}
+{% endblock footer %}

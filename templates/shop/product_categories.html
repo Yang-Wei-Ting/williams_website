@@ -1,0 +1,9 @@
+{% extends 'shop/base.html' %}
+
+{% block subtitle %}
+  Product Categories
+{% endblock subtitle %}
+
+{% block subcontent %}
+  <a href="{% url 'product_category_products' object.id %}">{{ object }}</a>
+{% endblock subcontent %}

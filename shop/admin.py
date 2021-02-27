@@ -23,7 +23,7 @@ class ProductAdmin(admin.ModelAdmin):
         "prodcat_id",
         "vend_id",
     )
-    ordering = ("prodcat_id__prodcat_name", "prod_name",)
+    ordering = ("prod_name",)
 
 
 class OrderAdmin(admin.ModelAdmin):
