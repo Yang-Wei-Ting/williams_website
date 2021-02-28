@@ -36,8 +36,10 @@
         {% for object in object_list %}
           <div class="col-sm-6 col-lg-4 mb-4" style="position: absolute; left: 0%; top: 0px;">
             <div class="card">
+
               {% block subcontent %}
-              {% endblock subcontent %}        
+              {% endblock subcontent %}
+
             </div>
           </div>
         {% endfor %}
