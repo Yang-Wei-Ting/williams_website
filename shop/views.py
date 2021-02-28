@@ -89,7 +89,10 @@ class ProductsView(ListView):
 
 
 def product_view(request, pk):
-    '''A view that displays details of a specific product.'''
+    '''
+    A view that displays details of a specific product.
+    If an user is authenticated, he or she can order the product.
+    '''
 
     product = Product.objects.get(id=pk)
     form, order, purchased = None, None, False
