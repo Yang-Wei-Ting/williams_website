@@ -1,6 +1,6 @@
 import datetime, itertools
 from django.views.generic import ListView
-from django.shortcuts import render
+from django.shortcuts import get_object_or_404, render
 
 from .models import ProductCategory, Vendor, Product
 from .forms import OrderForm
@@ -35,11 +35,12 @@ class ProductCategoryProductsView(ListView):
     template_name = 'shop/product_category_products.html'
 
     def get_queryset(self):
-        return Product.objects.filter(prodcat_id__id=self.kwargs['pk'])
+        self.product_category = get_object_or_404(ProductCategory, id=self.kwargs['pk'])
+        return Product.objects.filter(prodcat_id=self.product_category)
 
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
-        context['product_category'] = self.get_queryset()[0].prodcat_id
+        context['product_category'] = self.product_category
         context.update(get_current_time_and_hour())
         return context
 
@@ -65,11 +66,12 @@ class VendorProductsView(ListView):
     template_name = 'shop/vendor_products.html'
 
     def get_queryset(self):
-        return Product.objects.filter(vend_id__id=self.kwargs['pk'])
+        self.vendor = get_object_or_404(Vendor, id=self.kwargs['pk'])
+        return Product.objects.filter(vend_id=self.vendor)
 
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
-        context['vendor'] = self.get_queryset()[0].vend_id
+        context['vendor'] = self.vendor
         context.update(get_current_time_and_hour())
         return context
 
