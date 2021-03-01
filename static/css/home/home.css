@@ -1,46 +1,48 @@
-.carousel-caption {
-  bottom: 0;
-  z-index: 10;
-}
-
-#carousel-caption-one, #carousel-caption-two {
-  color: black;
-  background-color: #ffffff94;
-  font-size: xx-small;
-  font-weight: 600;
-  padding: .3rem;
-  border-radius: .25rem;
-}
-
-#home_carousel > div > div.carousel-item.active > div:nth-child(2) {
-  padding-bottom: 3rem;
-}
-
 .carousel {
-  height: calc(100vh - 3.5rem);
+	height: calc(100vh - 3.5rem);
 }
 
-.carousel-inner, .carousel-item {
-  height: 100%;
+.carousel-inner,
+.carousel-item {
+	height: 100%;
 }
 
 .carousel-item {
-  background-color: #000;
+	background-color: #000;
 }
 
 .carousel-item img {
-  height: 100%;
-  object-fit: cover;
-  object-position: center;
+	height: 100%;
 }
+
+.carousel-caption {
+	bottom: 0;
+	z-index: 10;
+}
+
+#carousel-caption-one,
+#carousel-caption-two {
+	color: #000;
+	background-color: #ffffff94;
+	font-size: xx-small;
+	font-weight: 600;
+	padding: .3rem;
+	border-radius: .25rem;
+}
+
+#home_carousel > div > div > div:nth-child(2) {
+	padding-bottom: 3rem;
+}
+
 
 /* RESPONSIVE CSS
 -------------------------------------------------- */
+
 @media (min-width: 40em) {
   /* Bump up size of carousel content */
-  .carousel-caption span {
-    margin-bottom: 1.25rem;
-    font-size: 1.25rem;
-    line-height: 1.4;
-  }
+	.carousel-caption span {
+		margin-bottom: 1.25rem;
+		font-size: 1.25rem;
+		line-height: 1.4;
+	}
 }
