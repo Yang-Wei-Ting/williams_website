@@ -54,3 +54,19 @@ p.text-muted.smaller {
 p.mb-4.text-muted.smaller {
   text-align: left;
 }
+
+.carousel-caption {
+  left: 5%;
+  right: 5%;
+  bottom: 0;
+  z-index: 10;
+}
+
+#background-caption {
+  color: black;
+  background-color: #ffffff94;
+  font-size: xx-small;
+  font-weight: 600;
+  padding: .3rem;
+  border-radius: .25rem;
+}
