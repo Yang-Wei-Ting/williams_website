@@ -7,7 +7,7 @@ from django.urls import reverse
 
 class SignupView(View):
     form_class = UserCreationForm
-    template_name = 'registration/signup.html'
+    template_name = 'accounts/signup.html'
 
     def get(self, request, *args, **kwargs):
         form = self.form_class()
