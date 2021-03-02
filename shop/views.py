@@ -36,7 +36,7 @@ class ProductCategoryProductsView(ListView):
 
     def get_queryset(self):
         self.product_category = get_object_or_404(ProductCategory, id=self.kwargs['pk'])
-        return Product.objects.filter(prodcat_id=self.product_category)
+        return Product.objects.filter(prodcat=self.product_category)
 
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
@@ -67,7 +67,7 @@ class VendorProductsView(ListView):
 
     def get_queryset(self):
         self.vendor = get_object_or_404(Vendor, id=self.kwargs['pk'])
-        return Product.objects.filter(vend_id=self.vendor)
+        return Product.objects.filter(vend=self.vendor)
 
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
@@ -102,8 +102,8 @@ def product_view(request, pk):
             form = OrderForm(request.POST)
             if form.is_valid():
                 order = form.save(commit=False)
-                order.cust_id = request.user
-                order.prod_id = product
+                order.cust = request.user
+                order.prod = product
                 order.order_totalprice = product.prod_price * form.cleaned_data['order_quantity']
                 order.save()
                 purchased = True

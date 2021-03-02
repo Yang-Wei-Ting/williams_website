@@ -75,8 +75,8 @@ class Product(models.Model):
     prod_price   = models.FloatField("Price (NTD)")
     prod_imgname = models.CharField("Image File Name", max_length=100)
     prod_imgsrc  = models.TextField("Image Source")
-    prodcat_id   = models.ForeignKey(ProductCategory, on_delete=models.CASCADE)
-    vend_id      = models.ForeignKey(Vendor, on_delete=models.CASCADE)
+    prodcat      = models.ForeignKey(ProductCategory, on_delete=models.CASCADE)
+    vend         = models.ForeignKey(Vendor, on_delete=models.CASCADE)
 
     class Meta:
         ordering = ('prod_name',)
@@ -89,8 +89,8 @@ class Product(models.Model):
 
 
 class Order(models.Model):
-    cust_id          = models.ForeignKey("auth.User", on_delete=models.CASCADE)
-    prod_id          = models.ForeignKey(Product, on_delete=models.CASCADE)
+    cust             = models.ForeignKey("auth.User", on_delete=models.CASCADE)
+    prod             = models.ForeignKey(Product, on_delete=models.CASCADE)
     order_quantity   = models.PositiveIntegerField("Quantity")
     order_totalprice = models.PositiveIntegerField("Total Price")
     order_date       = models.DateField("Date", auto_now_add=True)

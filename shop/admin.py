@@ -20,16 +20,16 @@ class ProductAdmin(admin.ModelAdmin):
         "prod_price",
         "prod_imgname",
         "prod_imgsrc",
-        "prodcat_id",
-        "vend_id",
+        "prodcat",
+        "vend",
     )
     ordering = ("prod_name",)
 
 
 class OrderAdmin(admin.ModelAdmin):
     list_display = (
-        "cust_id",
-        "prod_id",
+        "cust",
+        "prod",
         "order_quantity",
         "order_totalprice",
         "order_date",

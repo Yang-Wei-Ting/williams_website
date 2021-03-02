@@ -21,7 +21,7 @@
             </p>
           {% else %}
             <h1 class="featurette-heading">{{ product }}</h1>
-            <p class="lead heavier">Manufactured by {{ product.vend_id }}</p>
+            <p class="lead heavier">Manufactured by {{ product.vend }}</p>
             <p class="lead heavier">{{ product.prod_desc | linebreaksbr }}</p>
             <p class="lead heavier">NT$ {{ product.prod_price | floatformat:0 | intcomma }}</p>
 

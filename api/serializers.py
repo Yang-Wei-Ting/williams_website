@@ -13,6 +13,6 @@ class ProductSerializer(serializers.ModelSerializer):
             'prod_price',
             'prod_imgname',
             'prod_imgsrc',
-            'prodcat_id',
-            'vend_id',
+            'prodcat',
+            'vend',
         )
