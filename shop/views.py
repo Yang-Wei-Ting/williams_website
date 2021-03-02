@@ -94,7 +94,7 @@ def product_view(request, pk):
     If an user is authenticated, he or she can order the product.
     '''
 
-    product = Product.objects.get(id=pk)
+    product = get_object_or_404(Product, id=pk)
     form, order, purchased = None, None, False
 
     if request.user.is_authenticated:
