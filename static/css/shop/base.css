@@ -26,6 +26,14 @@ h5 {
 	background-color: #ffffffe0;
 }
 
+.bd-placeholder-img {
+	font-size: 1.125rem;
+	text-anchor: middle;
+	-webkit-user-select: none;
+	-moz-user-select: none;
+	user-select: none;
+}
+
 .featurette-divider {
 	margin: 3rem 0;
 }
@@ -43,6 +51,12 @@ h5 {
 
 .prod_text {
 	padding-left: calc(var(--bs-gutter-x));
+}
+
+@media (min-width: 768px) {
+	.bd-placeholder-img-lg {
+		font-size: 3.5rem;
+	}
 }
 
 @media (min-width: 62em) {
