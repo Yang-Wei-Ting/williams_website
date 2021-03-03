@@ -17,10 +17,6 @@
 	z-index: -1;
 }
 
-h5 {
-	margin-bottom: 0;
-}
-
 .card {
 	border: 0;
 	background-color: #ffffffe0;
@@ -34,8 +30,20 @@ h5 {
 	user-select: none;
 }
 
+h5 {
+	margin-bottom: 0;
+}
+
 .featurette-divider {
 	margin: 3rem 0;
+}
+
+.prod_text {
+	padding-left: calc(var(--bs-gutter-x));
+}
+
+.lead.heavier {
+	font-weight: 400;
 }
 
 .featurette-heading {
@@ -43,14 +51,6 @@ h5 {
 	line-height: 1;
 	letter-spacing: -.05rem;
 	margin-bottom: 1rem;
-}
-
-.lead.heavier {
-	font-weight: 400;
-}
-
-.prod_text {
-	padding-left: calc(var(--bs-gutter-x));
 }
 
 @media (min-width: 768px) {

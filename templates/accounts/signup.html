@@ -17,7 +17,7 @@
     <a href="{% url 'home' %}"><img class="mb-3" src="{% static 'images/logo.gif' %}" alt="logo" width="120"></a>
 
     {% if form.errors %}
-      <p class="mb-4 text-muted smaller">
+      <p class="text-muted smaller mb-4">
 
         {% for error in form.username.errors %}
           {{ error | escape }}<br>

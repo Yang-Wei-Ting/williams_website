@@ -15,6 +15,23 @@ body {
 /* header.html
 -------------------------------------------------- */
 
+#navbarCollapse > ul > .user-name > span {
+	color: #fff;
+}
+
+#navbarCollapse > ul:nth-child(2) > li:nth-last-child(1) {
+	padding-right: .5rem;
+}
+
+#navbarCollapse > ul:nth-child(3) > li > button {
+	background-color: transparent;
+	padding: .08rem .45rem;
+}
+
+#navbarCollapse > ul:nth-child(3) > li > button:focus {
+	box-shadow: 0 0 0 .1rem;
+}
+
 @media all and (min-width: 992px) {
 	.navbar .nav-item .dropdown-menu {
 		display: block;
@@ -35,23 +52,6 @@ body {
 		top: 100%;
 		transform: rotateX(0deg);
 	}
-}
-
-#navbarCollapse > ul > .user-name > span {
-	color: #fff;
-}
-
-#navbarCollapse > ul:nth-child(2) > li:nth-last-child(1) {
-	padding-right: .5rem;
-}
-
-#navbarCollapse > ul:nth-child(3) > li > button {
-	background-color: transparent;
-	padding: .08rem .45rem;
-}
-
-#navbarCollapse > ul:nth-child(3) > li > button:focus {
-	box-shadow: 0 0 0 .1rem;
 }
 
 
