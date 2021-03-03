@@ -41,24 +41,13 @@ h5 {
 	font-weight: 400;
 }
 
-.prod_text,
-.prod_img {
-	padding-right: calc(var(--bs-gutter-x));
+.prod_text {
 	padding-left: calc(var(--bs-gutter-x));
-}
-
-
-/* RESPONSIVE CSS
--------------------------------------------------- */
-
-@media (min-width: 40em) {
-	.featurette-heading {
-		font-size: 50px;
-	}
 }
 
 @media (min-width: 62em) {
 	.featurette-heading {
+		font-size: 50px;
 		margin-top: 4rem;
 		margin-bottom: 1.5rem;
 	}

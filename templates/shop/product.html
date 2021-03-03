@@ -6,9 +6,9 @@
 
 {% block content %}
   <main class="d-flex flex-column shop_main">
-    <div class="container marketing">
+    <div class="container">
       <hr class="featurette-divider">
-      <div class="row featurette">
+      <div class="row">
         <div class="col-md-7 order-md-2 prod_text">
           {% load humanize %}
 
@@ -44,7 +44,7 @@
 
         </div>
         {% load static %}
-        <div class="col-md-5 order-md-1 prod_img"
+        <div class="col-md-5 order-md-1"
              style="background-image: url({% static 'images/'|add:product.prod_imgname %});
                     background-size: contain;
                     background-repeat: no-repeat;
