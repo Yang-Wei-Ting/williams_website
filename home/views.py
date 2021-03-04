@@ -18,3 +18,8 @@ def home_view(request):
         'music_caption': HomeCaption.objects.get(purpose='About the Music'),
     }
     return render(request, 'home/home.html', context=context)
+
+
+def page_not_found_view(request, exception):
+    context = {'current_hour': datetime.datetime.now().timetuple().tm_hour}
+    return render(request, 'home/page_not_found.html', context=context)

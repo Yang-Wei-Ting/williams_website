@@ -17,3 +17,5 @@ urlpatterns = [
     path('accounts/', include('accounts.urls')),
     path('api-auth/', include('rest_framework.urls')),
 ]
+
+handler404 = 'home.views.page_not_found_view'
