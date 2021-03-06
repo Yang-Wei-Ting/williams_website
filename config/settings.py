@@ -47,6 +47,7 @@ INSTALLED_APPS = [
     'widget_tweaks',
     'rest_framework',
     'corsheaders',
+    'coverage',
 
     'home.apps.HomeConfig',
     'shop.apps.ShopConfig',
