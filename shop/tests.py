@@ -41,6 +41,7 @@ class ShopTest(TestCase):
             order_totalprice=99 * self.prod.prod_price,
         )
 
+
     def test_model_field_value(self):
         self.assertEqual(self.prodcat.prodcat_name, "prodcat_name")
         self.assertEqual(self.vend.vend_name, "vend_name")
