@@ -53,6 +53,10 @@
 	margin-bottom: 1rem;
 }
 
+.prod_text > p > a > button {
+  padding: .1875rem .375rem;
+}
+
 @media (min-width: 62em) {
 	.featurette-heading {
 		font-size: 50px;

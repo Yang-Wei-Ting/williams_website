@@ -37,7 +37,9 @@
               </form>
 
             {% else %}
-              <p class="lead heavier">Please <a href="{% url 'login' %}"><strong>login</strong></a> to order.</p>
+              <p class="lead heavier">
+                Please <a href="{% url 'login' %}"><button type="button" class="btn btn-primary">login</button></a> to order.
+              </p>
             {% endif %}
 
           {% endif %}
