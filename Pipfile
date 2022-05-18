@@ -6,9 +6,8 @@ name = "pypi"
 [packages]
 django = "*"
 mysqlclient = "*"
-gunicorn = "==20.0.4"
+gunicorn = "*"
 python-dotenv = "*"
-and = "*"
 psycopg2 = "*"
 whitenoise = "*"
 djangorestframework = "*"
@@ -19,4 +18,4 @@ coverage = "*"
 [dev-packages]
 
 [requires]
-python_version = "3.9"
+python_version = "3.10"
