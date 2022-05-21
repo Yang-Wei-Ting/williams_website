@@ -1,17 +1,12 @@
-from django.test import TestCase
 from django.contrib.auth import get_user_model
+from django.test import TestCase
 from django.urls import reverse
 
-from .models import (
-    ProductCategory,
-    Vendor,
-    Product,
-    Order,
-)
+from .models import Order, Product, ProductCategory, Vendor
 
 
 class ShopTest(TestCase):
-    # models
+
     def setUp(self):
         self.prodcat = ProductCategory.objects.create(
             prodcat_name="prodcat_name",
@@ -30,7 +25,7 @@ class ShopTest(TestCase):
             prodcat=self.prodcat,
             vend=self.vend,
         )
-        self.cust=get_user_model().objects.create_user(
+        self.cust = get_user_model().objects.create_user(
             username="username",
             password="password",
         )
@@ -40,7 +35,6 @@ class ShopTest(TestCase):
             order_quantity=99,
             order_totalprice=99 * self.prod.prod_price,
         )
-
 
     def test_model_field_value(self):
         self.assertEqual(self.prodcat.prodcat_name, "prodcat_name")
@@ -60,19 +54,18 @@ class ShopTest(TestCase):
         self.assertEqual(self.order.order_quantity, 99)
         self.assertEqual(self.order.order_totalprice, 99 * 3.14)
 
-
     def test_string_representation(self):
         self.assertEqual(str(self.prodcat), self.prodcat.prodcat_name)
         self.assertEqual(str(self.vend), self.vend.vend_name)
         self.assertEqual(str(self.prod), self.prod.prod_name)
         self.assertEqual(str(self.order), f"Order ID {self.order.id}")
 
-
     def test_get_absolute_url(self):
-        self.assertEqual(self.prod.get_absolute_url(), '/shop/products/1/')
+        self.assertEqual(
+            self.prod.get_absolute_url(),
+            f'/shop/products/{self.prod.id}/',
+        )
 
-
-    # views
     def test_product_categories_view(self):
         response = self.client.get(
             reverse('product_categories'),
@@ -80,7 +73,6 @@ class ShopTest(TestCase):
         )
         self.assertEqual(response.status_code, 200)
         self.assertTemplateUsed(response, 'shop/product_categories.html')
-
 
     def test_product_category_products_view(self):
         response = self.client.get(
@@ -97,7 +89,6 @@ class ShopTest(TestCase):
         self.assertEqual(response.status_code, 404)
         self.assertTemplateUsed(response, 'home/page_not_found.html')
 
-
     def test_vendors_view(self):
         response = self.client.get(
             reverse('vendors'),
@@ -105,7 +96,6 @@ class ShopTest(TestCase):
         )
         self.assertEqual(response.status_code, 200)
         self.assertTemplateUsed(response, 'shop/vendors.html')
-
 
     def test_vendor_products_view(self):
         response = self.client.get(
@@ -122,12 +112,10 @@ class ShopTest(TestCase):
         self.assertEqual(response.status_code, 404)
         self.assertTemplateUsed(response, 'home/page_not_found.html')
 
-
     def test_products_view(self):
         response = self.client.get(reverse('products'), secure=True)
         self.assertEqual(response.status_code, 200)
         self.assertTemplateUsed(response, 'shop/products.html')
-
 
     def test_product_view___get___not_logged_in(self):
         response = self.client.get(
@@ -143,7 +131,6 @@ class ShopTest(TestCase):
         )
         self.assertEqual(response.status_code, 404)
         self.assertTemplateUsed(response, 'home/page_not_found.html')
-
 
     def test_product_view___get___logged_in(self):
         self.client.login(username='username', password='password')
@@ -162,7 +149,6 @@ class ShopTest(TestCase):
         self.assertEqual(response.status_code, 404)
         self.assertTemplateUsed(response, 'home/page_not_found.html')
 
-
     def test_product_view___post___not_logged_in(self):
         response = self.client.post(
             reverse('product', args=['1']),
@@ -179,7 +165,6 @@ class ShopTest(TestCase):
         )
         self.assertEqual(response.status_code, 404)
         self.assertTemplateUsed(response, 'home/page_not_found.html')
-
 
     def test_product_view___post___logged_in(self):
         self.client.login(username='username', password='password')

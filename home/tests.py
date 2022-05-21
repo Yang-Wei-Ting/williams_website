@@ -3,7 +3,7 @@ from django.urls import reverse
 
 
 class HomeTest(TestCase):
-    # views
+
     def test_home_view(self):
         response = self.client.get(
             reverse('home'),

@@ -1,13 +1,17 @@
-import datetime, itertools
-from django.views.generic import ListView
-from django.shortcuts import get_object_or_404, render
+import datetime
+import itertools
 
-from .models import ProductCategory, Vendor, Product
+from django.shortcuts import get_object_or_404, render
+from django.views.generic import ListView
+
 from .forms import OrderForm
+from .models import Product, ProductCategory, Vendor
 
 
 def get_current_time_and_hour():
-    '''Returns a dictionary containing current_time and current_hour.'''
+    '''
+    Returns a dictionary containing current_time and current_hour.
+    '''
 
     current_time = datetime.datetime.now()
     current_hour = current_time.timetuple().tm_hour
@@ -15,7 +19,9 @@ def get_current_time_and_hour():
 
 
 class ProductCategoriesView(ListView):
-    '''A view that displays all product categories.'''
+    '''
+    A view that displays all product categories.
+    '''
 
     queryset = list(itertools.chain(
         ProductCategory.objects.exclude(prodcat_name='Others'),
@@ -30,7 +36,9 @@ class ProductCategoriesView(ListView):
 
 
 class ProductCategoryProductsView(ListView):
-    '''A view that displays all products of a specific product category.'''
+    '''
+    A view that displays all products of a specific product category.
+    '''
 
     template_name = 'shop/product_category_products.html'
 
@@ -46,7 +54,9 @@ class ProductCategoryProductsView(ListView):
 
 
 class VendorsView(ListView):
-    '''A view that displays all vendors.'''
+    '''
+    A view that displays all vendors.
+    '''
 
     queryset = list(itertools.chain(
         Vendor.objects.exclude(vend_name='Unknown'),
@@ -61,7 +71,9 @@ class VendorsView(ListView):
 
 
 class VendorProductsView(ListView):
-    '''A view that displays all products of a specific vendor.'''
+    '''
+    A view that displays all products of a specific vendor.
+    '''
 
     template_name = 'shop/vendor_products.html'
 
@@ -77,7 +89,9 @@ class VendorProductsView(ListView):
 
 
 class ProductsView(ListView):
-    '''A view that displays all products.'''
+    '''
+    A view that displays all products.
+    '''
 
     model = Product
     template_name = 'shop/products.html'

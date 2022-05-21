@@ -1,9 +1,10 @@
 import datetime
+
 from django.shortcuts import render
 
 
 def home_view(request):
-    if request.session.get("visited", False):
+    if "visited" in request.session and request.session["visited"] is True:
         greeting_msg = "Welcome Back!"
     else:
         greeting_msg = ""

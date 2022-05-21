@@ -1,7 +1,6 @@
 from django.db import models
 from django.urls import reverse
 
-
 COUNTRY_CHOICES = [
     ('AQ', 'Antarctica'),
     ('AU', 'Australia'),
@@ -48,28 +47,33 @@ COUNTRY_CHOICES = [
 
 
 class ProductCategory(models.Model):
+
     prodcat_name = models.CharField("Name", max_length=100)
 
     class Meta:
-        ordering = ('prodcat_name',)
+
+        ordering = ('prodcat_name', )
 
     def __str__(self):
         return self.prodcat_name
 
 
 class Vendor(models.Model):
+
     vend_name    = models.CharField("Name", max_length=100)
     vend_country = models.CharField("Country", max_length=2, choices=COUNTRY_CHOICES, default='TW')
     vend_city    = models.CharField("City", max_length=100)
 
     class Meta:
-        ordering = ('vend_name',)
+
+        ordering = ('vend_name', )
 
     def __str__(self):
         return self.vend_name
 
 
 class Product(models.Model):
+
     prod_name    = models.CharField("Name", max_length=100)
     prod_desc    = models.TextField("Description")
     prod_price   = models.FloatField("Price (NTD)")
@@ -79,7 +83,8 @@ class Product(models.Model):
     vend         = models.ForeignKey(Vendor, on_delete=models.CASCADE)
 
     class Meta:
-        ordering = ('prod_name',)
+
+        ordering = ('prod_name', )
 
     def __str__(self):
         return self.prod_name
@@ -89,6 +94,7 @@ class Product(models.Model):
 
 
 class Order(models.Model):
+
     cust             = models.ForeignKey("auth.User", on_delete=models.CASCADE)
     prod             = models.ForeignKey(Product, on_delete=models.CASCADE)
     order_quantity   = models.PositiveIntegerField("Quantity")
