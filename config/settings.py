@@ -94,11 +94,14 @@ REST_FRAMEWORK = {
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.postgresql',
-        'NAME': 'd5b20jjg0jtn0f',
-        'USER': 'sisdzhuzvwckgh',
+        'NAME': os.environ['POSTGRESQL_NAME'],
+        'USER': os.environ['POSTGRESQL_USER'],
         'PASSWORD': os.environ['POSTGRESQL_PASSWORD'],
-        'HOST': 'ec2-54-164-233-77.compute-1.amazonaws.com',
+        'HOST': os.environ['POSTGRESQL_HOST'],
         'PORT': '5432',
+        'TEST': {
+            'NAME': os.environ['POSTGRESQL_NAME'],
+        },
     },
 }
 
