@@ -1,15 +1,9 @@
 from django.urls import path
 from django.views.generic import RedirectView
 
-from .views import (
-    ProductCategoriesView,
-    ProductCategoryProductsView,
-    VendorsView,
-    VendorProductsView,
-    ProductsView,
-    product_view,
-)
-
+from .views import (ProductCategoriesView, ProductCategoryProductsView,
+                    ProductsView, VendorProductsView, VendorsView,
+                    product_view)
 
 urlpatterns = [
     path('',                             RedirectView.as_view(url='products/', permanent=True)),

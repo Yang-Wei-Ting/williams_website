@@ -1,19 +1,22 @@
 from django.contrib import admin
 
-from .models import ProductCategory, Vendor, Product, Order
+from .models import Order, Product, ProductCategory, Vendor
 
 
 class ProductCategoryAdmin(admin.ModelAdmin):
-    list_display = ("prodcat_name",)
-    ordering = ("prodcat_name",)
+
+    list_display = ("prodcat_name", )
+    ordering = ("prodcat_name", )
 
 
 class VendorAdmin(admin.ModelAdmin):
+
     list_display = ("vend_name", "vend_country", "vend_city")
-    ordering = ("vend_name",)
+    ordering = ("vend_name", )
 
 
 class ProductAdmin(admin.ModelAdmin):
+
     list_display = (
         "prod_name",
         "prod_desc",
@@ -23,10 +26,11 @@ class ProductAdmin(admin.ModelAdmin):
         "prodcat",
         "vend",
     )
-    ordering = ("prod_name",)
+    ordering = ("prod_name", )
 
 
 class OrderAdmin(admin.ModelAdmin):
+
     list_display = (
         "cust",
         "prod",
@@ -34,7 +38,7 @@ class OrderAdmin(admin.ModelAdmin):
         "order_totalprice",
         "order_date",
     )
-    ordering = ("-order_date",)
+    ordering = ("-order_date", )
 
 
 admin.site.register(ProductCategory, ProductCategoryAdmin)
