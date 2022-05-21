@@ -69,7 +69,10 @@ class ShopTest(TestCase):
 
 
     def test_get_absolute_url(self):
-        self.assertEqual(self.prod.get_absolute_url(), '/shop/products/1/')
+        self.assertEqual(
+            self.prod.get_absolute_url(),
+            f'/shop/products/{self.prod.id}/',
+        )
 
 
     # views
