@@ -5,7 +5,6 @@ name = "pypi"
 
 [packages]
 django = "*"
-mysqlclient = "*"
 gunicorn = "*"
 python-dotenv = "*"
 psycopg2 = "*"
