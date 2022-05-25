@@ -5,15 +5,6 @@ on: [ push, pull_request ]
 jobs:
   test_job:
     runs-on: ubuntu-latest
-    services:
-      postgres:
-        image: postgres
-        env:
-          POSTGRES_DB: ${{ secrets.POSTGRESQL_NAME }}
-          POSTGRES_USER: ${{ secrets.POSTGRESQL_USER }}
-          POSTGRES_PASSWORD: ${{ secrets.POSTGRESQL_PASSWORD }}
-        ports: [ '5432:5432' ]
-        options: --health-cmd pg_isready --health-interval 10s --health-timeout 5s --health-retries 5
     steps:
       - name: Checkout
         uses: actions/checkout@v3
@@ -30,9 +21,9 @@ jobs:
 
       - name: Run migrations, collect static files, and run tests
         run: |
-          python manage.py migrate --run-syncdb
+          python manage.py migrate --database=test
           python manage.py collectstatic
-          python -m coverage run manage.py test --keepdb
+          python -m coverage run manage.py test
           python -m coverage report -m
         env:
           SECRET_KEY: ${{ secrets.SECRET_KEY }}

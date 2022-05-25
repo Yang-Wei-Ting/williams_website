@@ -1,4 +1,5 @@
 import os
+import sys
 from pathlib import Path
 
 import dotenv
@@ -91,28 +92,28 @@ REST_FRAMEWORK = {
 
 
 # Database
-DATABASES = {
-    'default': {
-        'ENGINE': 'django.db.backends.postgresql',
-        'NAME': os.environ['POSTGRESQL_NAME'],
-        'USER': os.environ['POSTGRESQL_USER'],
-        'PASSWORD': os.environ['POSTGRESQL_PASSWORD'],
-        'HOST': os.environ['POSTGRESQL_HOST'],
-        'PORT': '5432',
-        'TEST': {
-            'NAME': os.environ['POSTGRESQL_NAME'],
+if 'test' in sys.argv:
+    DATABASES = {
+        'default': {
+            'ENGINE': 'django.db.backends.sqlite3',
+            'NAME': BASE_DIR / 'db.sqlite3',
         },
-    },
-}
-
-'''
-DATABASES = {
-    'default': {
-        'ENGINE': 'django.db.backends.sqlite3',
-        'NAME': BASE_DIR / 'db.sqlite3',
-    },
-}
-'''
+    }
+else:
+    DATABASES = {
+        'default': {
+            'ENGINE': 'django.db.backends.postgresql',
+            'NAME': os.environ['POSTGRESQL_NAME'],
+            'USER': os.environ['POSTGRESQL_USER'],
+            'PASSWORD': os.environ['POSTGRESQL_PASSWORD'],
+            'HOST': os.environ['POSTGRESQL_HOST'],
+            'PORT': '5432',
+        },
+        'test': {
+            'ENGINE': 'django.db.backends.sqlite3',
+            'NAME': BASE_DIR / 'db.sqlite3',
+        },
+    }
 
 DEFAULT_AUTO_FIELD = 'django.db.models.AutoField'
 
