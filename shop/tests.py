@@ -5,7 +5,7 @@ from django.urls import reverse
 from .models import Order, Product, ProductCategory, Vendor
 
 
-class ShopTest(TestCase):
+class ShopModelsTest(TestCase):
 
     def setUp(self):
         self.prodcat = ProductCategory.objects.create(
@@ -65,6 +65,11 @@ class ShopTest(TestCase):
             self.prod.get_absolute_url(),
             f'/shop/products/{self.prod.id}/',
         )
+
+
+class ShopViewsTest(TestCase):
+
+    fixtures = ['shop.json']
 
     def test_product_categories_view(self):
         response = self.client.get(
