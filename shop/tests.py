@@ -3,6 +3,8 @@ from django.test import TestCase
 from django.urls import reverse
 
 from .models import Order, Product, ProductCategory, Vendor
+from .views import (ProductCategoriesView, ProductCategoryProductsView,
+                    ProductsView, VendorProductsView, VendorsView)
 
 
 class ShopModelsTest(TestCase):
@@ -71,22 +73,47 @@ class ShopViewsTest(TestCase):
 
     fixtures = ['shop.json']
 
-    def test_product_categories_view(self):
+    def test_product_categories_view__get_200(self):
         response = self.client.get(
             reverse('product_categories'),
             secure=True,
         )
         self.assertEqual(response.status_code, 200)
+        self.assertTrue(isinstance(response.context['view'], ProductCategoriesView))
+        self.assertEqual(response.context['view']._allowed_methods(), ['GET', 'HEAD', 'OPTIONS'])
+        self.assertQuerysetEqual(
+            response.context['object_list'],
+            [
+                'Books', 'Electronics', 'Fashion', 'Food', 'Health & Beauty', 'Sporting Goods',
+                'Toys & Hobbies', 'Others',
+            ],
+            transform=lambda obj: obj.prodcat_name,
+            ordered=True,
+        )
+        self.assertIn('current_time', response.context)
+        self.assertIn('current_hour', response.context)
         self.assertTemplateUsed(response, 'shop/product_categories.html')
 
-    def test_product_category_products_view(self):
+    def test_product_category_products_view__get_200(self):
         response = self.client.get(
-            reverse('product_category_products', args=['1']),
+            reverse('product_category_products', args=['12']),
             secure=True,
         )
         self.assertEqual(response.status_code, 200)
+        self.assertTrue(isinstance(response.context['view'], ProductCategoryProductsView))
+        self.assertEqual(response.context['view']._allowed_methods(), ['GET', 'HEAD', 'OPTIONS'])
+        self.assertQuerysetEqual(
+            response.context['object_list'],
+            ['French Fries', 'Hamburger', 'Ice Cubes'],
+            transform=lambda obj: obj.prod_name,
+            ordered=True,
+        )
+        self.assertEqual(response.context['product_category'].prodcat_name, 'Food')
+        self.assertIn('current_time', response.context)
+        self.assertIn('current_hour', response.context)
         self.assertTemplateUsed(response, 'shop/product_category_products.html')
 
+    def test_product_category_products_view__get_404(self):
         response = self.client.get(
             reverse('product_category_products', args=['99999']),
             secure=True,
@@ -94,22 +121,46 @@ class ShopViewsTest(TestCase):
         self.assertEqual(response.status_code, 404)
         self.assertTemplateUsed(response, 'home/page_not_found.html')
 
-    def test_vendors_view(self):
+    def test_vendors_view__get_200(self):
         response = self.client.get(
             reverse('vendors'),
             secure=True,
         )
         self.assertEqual(response.status_code, 200)
+        self.assertTrue(isinstance(response.context['view'], VendorsView))
+        self.assertEqual(response.context['view']._allowed_methods(), ['GET', 'HEAD', 'OPTIONS'])
+        self.assertQuerysetEqual(
+            response.context['object_list'],
+            [
+                'Abibas', 'Banana', 'F 4 Fashion', 'Fink Manufacturing', 'Microhard', 'Mike',
+                'Penguin Inc.', 'Programing Press', 'Toys R Them', "WcDonald's", 'Unknown',
+            ],
+            transform=lambda obj: obj.vend_name,
+            ordered=True,
+        )
+        self.assertIn('current_time', response.context)
+        self.assertIn('current_hour', response.context)
         self.assertTemplateUsed(response, 'shop/vendors.html')
 
-    def test_vendor_products_view(self):
+    def test_vendor_products_view__get_200(self):
         response = self.client.get(
-            reverse('vendor_products', args=['1']),
+            reverse('vendor_products', args=['5']),
             secure=True,
         )
         self.assertEqual(response.status_code, 200)
+        self.assertTrue(isinstance(response.context['view'], VendorProductsView))
+        self.assertEqual(response.context['view']._allowed_methods(), ['GET', 'HEAD', 'OPTIONS'])
+        self.assertQuerysetEqual(
+            response.context['object_list'],
+            ['French Fries', 'Hamburger'],
+            transform=lambda obj: obj.prod_name,
+        )
+        self.assertEqual(response.context['vendor'].vend_name, "WcDonald's")
+        self.assertIn('current_time', response.context)
+        self.assertIn('current_hour', response.context)
         self.assertTemplateUsed(response, 'shop/vendor_products.html')
 
+    def test_vendor_products_view__get_404(self):
         response = self.client.get(
             reverse('vendor_products', args=['99999']),
             secure=True,
@@ -117,21 +168,75 @@ class ShopViewsTest(TestCase):
         self.assertEqual(response.status_code, 404)
         self.assertTemplateUsed(response, 'home/page_not_found.html')
 
-    def test_products_view(self):
+    def test_products_view__get_200(self):
         response = self.client.get(
             reverse('products'),
             secure=True,
         )
         self.assertEqual(response.status_code, 200)
+        self.assertTrue(isinstance(response.context['view'], ProductsView))
+        self.assertEqual(response.context['view']._allowed_methods(), ['GET', 'HEAD', 'OPTIONS'])
+        self.assertQuerysetEqual(
+            response.context['object_list'],
+            [
+                '!phone 20', 'Dinosaur Plush Toy', 'Doors 12', 'Doors 98', 'Flying Shoes',
+                'Fountain of Youth', 'French Fries', 'Hamburger', 'Ice Cubes', 'Mask',
+                'Sky-Hook', 'Sneakers', 'Three Scoops of Django 4.2',
+            ],
+            transform=lambda obj: obj.prod_name,
+        )
+        self.assertIn('current_time', response.context)
+        self.assertIn('current_hour', response.context)
         self.assertTemplateUsed(response, 'shop/products.html')
 
-    def test_product_view___get___not_logged_in(self):
+    def test_product_view__get_200(self):
         response = self.client.get(
             reverse('product', args=['1']),
             secure=True,
         )
         self.assertEqual(response.status_code, 200)
+        self.assertEqual(response.context['product'].prod_name, 'Sneakers')
+        self.assertIsNone(response.context['form'])
+        self.assertIsNone(response.context['order'])
+        self.assertFalse(response.context['purchased'])
+        self.assertIn('current_time', response.context)
+        self.assertIn('current_hour', response.context)
         self.assertTemplateUsed(response, 'shop/product.html')
+
+        # Login
+        user = get_user_model().objects.create_user(
+            username='username',
+            password='password',
+        )
+        self.client.force_login(user)
+
+        response = self.client.get(
+            reverse('product', args=['1']),
+            secure=True,
+        )
+        self.assertEqual(response.status_code, 200)
+        self.assertEqual(response.context['product'].prod_name, 'Sneakers')
+        self.assertFalse(response.context['form'].is_bound)
+        self.assertIsNone(response.context['order'])
+        self.assertFalse(response.context['purchased'])
+        self.assertIn('current_time', response.context)
+        self.assertIn('current_hour', response.context)
+        self.assertTemplateUsed(response, 'shop/product.html')
+
+    def test_product_view__get_404(self):
+        response = self.client.get(
+            reverse('product', args=['99999']),
+            secure=True,
+        )
+        self.assertEqual(response.status_code, 404)
+        self.assertTemplateUsed(response, 'home/page_not_found.html')
+
+        # Login
+        user = get_user_model().objects.create_user(
+            username='username',
+            password='password',
+        )
+        self.client.force_login(user)
 
         response = self.client.get(
             reverse('product', args=['99999']),
@@ -140,54 +245,65 @@ class ShopViewsTest(TestCase):
         self.assertEqual(response.status_code, 404)
         self.assertTemplateUsed(response, 'home/page_not_found.html')
 
-    def test_product_view___get___logged_in(self):
-        self.client.login(username='username', password='password')
-
-        response = self.client.get(
+    def test_product_view__post_200(self):
+        response = self.client.post(
             reverse('product', args=['1']),
+            data={'order_quantity': 2},
             secure=True,
         )
         self.assertEqual(response.status_code, 200)
+        self.assertEqual(response.context['product'].prod_name, 'Sneakers')
+        self.assertIsNone(response.context['form'])
+        self.assertIsNone(response.context['order'])
+        self.assertFalse(response.context['purchased'])
+        self.assertIn('current_time', response.context)
+        self.assertIn('current_hour', response.context)
         self.assertTemplateUsed(response, 'shop/product.html')
 
-        response = self.client.get(
+        # Login
+        user = get_user_model().objects.create_user(
+            username='username',
+            password='password',
+        )
+        self.client.force_login(user)
+
+        response = self.client.post(
+            reverse('product', args=['1']),
+            data={'order_quantity': 2},
+            secure=True,
+        )
+        self.assertEqual(response.status_code, 200)
+        self.assertEqual(response.context['product'].prod_name, 'Sneakers')
+        self.assertIn('form', response.context)
+        order = Order.objects.last()
+        self.assertEqual(order.cust.username, 'username')
+        self.assertEqual(order.prod.prod_name, 'Sneakers')
+        self.assertEqual(order.order_quantity, 2)
+        self.assertEqual(order.order_totalprice, 7000)
+        self.assertTrue(response.context['purchased'])
+        self.assertIn('current_time', response.context)
+        self.assertIn('current_hour', response.context)
+        self.assertTemplateUsed(response, 'shop/product.html')
+
+    def test_product_view__post_404(self):
+        response = self.client.post(
             reverse('product', args=['99999']),
+            data={'order_quantity': 2},
             secure=True,
         )
         self.assertEqual(response.status_code, 404)
         self.assertTemplateUsed(response, 'home/page_not_found.html')
 
-    def test_product_view___post___not_logged_in(self):
-        response = self.client.post(
-            reverse('product', args=['1']),
-            data={'order_quantity': 1},
-            secure=True,
+        # Login
+        user = get_user_model().objects.create_user(
+            username='username',
+            password='password',
         )
-        self.assertEqual(response.status_code, 200)
-        self.assertTemplateUsed(response, 'shop/product.html')
+        self.client.force_login(user)
 
         response = self.client.post(
             reverse('product', args=['99999']),
-            data={'order_quantity': 1},
-            secure=True,
-        )
-        self.assertEqual(response.status_code, 404)
-        self.assertTemplateUsed(response, 'home/page_not_found.html')
-
-    def test_product_view___post___logged_in(self):
-        self.client.login(username='username', password='password')
-
-        response = self.client.post(
-            reverse('product', args=['1']),
-            data={'order_quantity': 1},
-            secure=True,
-        )
-        self.assertEqual(response.status_code, 200)
-        self.assertTemplateUsed(response, 'shop/product.html')
-
-        response = self.client.post(
-            reverse('product', args=['99999']),
-            data={'order_quantity': 1},
+            data={'order_quantity': 2},
             secure=True,
         )
         self.assertEqual(response.status_code, 404)
