@@ -1,0 +1,326 @@
+[
+{
+    "model": "shop.productcategory",
+    "pk": 1,
+    "fields": {
+        "prodcat_name": "Others"
+    }
+},
+{
+    "model": "shop.productcategory",
+    "pk": 2,
+    "fields": {
+        "prodcat_name": "Health & Beauty"
+    }
+},
+{
+    "model": "shop.productcategory",
+    "pk": 4,
+    "fields": {
+        "prodcat_name": "Toys & Hobbies"
+    }
+},
+{
+    "model": "shop.productcategory",
+    "pk": 5,
+    "fields": {
+        "prodcat_name": "Sporting Goods"
+    }
+},
+{
+    "model": "shop.productcategory",
+    "pk": 8,
+    "fields": {
+        "prodcat_name": "Electronics"
+    }
+},
+{
+    "model": "shop.productcategory",
+    "pk": 9,
+    "fields": {
+        "prodcat_name": "Books"
+    }
+},
+{
+    "model": "shop.productcategory",
+    "pk": 10,
+    "fields": {
+        "prodcat_name": "Fashion"
+    }
+},
+{
+    "model": "shop.productcategory",
+    "pk": 12,
+    "fields": {
+        "prodcat_name": "Food"
+    }
+},
+{
+    "model": "shop.vendor",
+    "pk": 1,
+    "fields": {
+        "vend_name": "Mike",
+        "vend_country": "US",
+        "vend_city": "Beaverton"
+    }
+},
+{
+    "model": "shop.vendor",
+    "pk": 2,
+    "fields": {
+        "vend_name": "Microhard",
+        "vend_country": "US",
+        "vend_city": "Redmond"
+    }
+},
+{
+    "model": "shop.vendor",
+    "pk": 3,
+    "fields": {
+        "vend_name": "Abibas",
+        "vend_country": "DE",
+        "vend_city": "Herzogenaurach"
+    }
+},
+{
+    "model": "shop.vendor",
+    "pk": 4,
+    "fields": {
+        "vend_name": "Toys R Them",
+        "vend_country": "US",
+        "vend_city": "Wayne"
+    }
+},
+{
+    "model": "shop.vendor",
+    "pk": 5,
+    "fields": {
+        "vend_name": "WcDonald's",
+        "vend_country": "US",
+        "vend_city": "Chicago"
+    }
+},
+{
+    "model": "shop.vendor",
+    "pk": 7,
+    "fields": {
+        "vend_name": "Penguin Inc.",
+        "vend_country": "AQ",
+        "vend_city": "City of Ice"
+    }
+},
+{
+    "model": "shop.vendor",
+    "pk": 8,
+    "fields": {
+        "vend_name": "Fink Manufacturing",
+        "vend_country": "XX",
+        "vend_city": "Columbia"
+    }
+},
+{
+    "model": "shop.vendor",
+    "pk": 10,
+    "fields": {
+        "vend_name": "Banana",
+        "vend_country": "US",
+        "vend_city": "Cupertino"
+    }
+},
+{
+    "model": "shop.vendor",
+    "pk": 11,
+    "fields": {
+        "vend_name": "Programing Press",
+        "vend_country": "TW",
+        "vend_city": "Taipei"
+    }
+},
+{
+    "model": "shop.vendor",
+    "pk": 12,
+    "fields": {
+        "vend_name": "F 4 Fashion",
+        "vend_country": "IT",
+        "vend_city": "Venice"
+    }
+},
+{
+    "model": "shop.vendor",
+    "pk": 13,
+    "fields": {
+        "vend_name": "Unknown",
+        "vend_country": "XX",
+        "vend_city": "Unknown"
+    }
+},
+{
+    "model": "shop.product",
+    "pk": 1,
+    "fields": {
+        "prod_name": "Sneakers",
+        "prod_desc": "Cool-looking sneakers!",
+        "prod_price": 3500.0,
+        "prod_imgname": "sneakers.jpg",
+        "prod_imgsrc": "Photo by Ryan Plomp (Cropped)",
+        "prodcat": 5,
+        "vend": 1
+    }
+},
+{
+    "model": "shop.product",
+    "pk": 2,
+    "fields": {
+        "prod_name": "Flying Shoes",
+        "prod_desc": "What? You're still wearing running shoes?",
+        "prod_price": 50000.0,
+        "prod_imgname": "flying_shoes.jpg",
+        "prod_imgsrc": "Photo by Hamza Ali (Cropped)",
+        "prodcat": 5,
+        "vend": 3
+    }
+},
+{
+    "model": "shop.product",
+    "pk": 3,
+    "fields": {
+        "prod_name": "Hamburger",
+        "prod_desc": "A hamburger a day keeps the doctor away!",
+        "prod_price": 150.0,
+        "prod_imgname": "hamburger.jpg",
+        "prod_imgsrc": "Photo by Joan Tran (Cropped)",
+        "prodcat": 12,
+        "vend": 5
+    }
+},
+{
+    "model": "shop.product",
+    "pk": 5,
+    "fields": {
+        "prod_name": "Sky-Hook",
+        "prod_desc": "Ride the rails of the sky for the fastest travel in Columbia!",
+        "prod_price": 999999.0,
+        "prod_imgname": "sky-hook.png",
+        "prod_imgsrc": "The above image was taken from the BioShock video game series or from websites created and owned by 2K Games, the copyright of which is held by Take-Two Interactive Software, Inc. All trademarks and registered trademarks present in the image are proprietary to Take-Two Interactive and its subsidiaries.",
+        "prodcat": 1,
+        "vend": 8
+    }
+},
+{
+    "model": "shop.product",
+    "pk": 6,
+    "fields": {
+        "prod_name": "Doors 12",
+        "prod_desc": "The latest Doors from Microhard!",
+        "prod_price": 10000.0,
+        "prod_imgname": "blue_door.gif",
+        "prod_imgsrc": "Image by kmicican (Modified)",
+        "prodcat": 8,
+        "vend": 2
+    }
+},
+{
+    "model": "shop.product",
+    "pk": 9,
+    "fields": {
+        "prod_name": "Ice Cubes",
+        "prod_desc": "Ice cubes from Antarctica!",
+        "prod_price": 250.0,
+        "prod_imgname": "ice_cubes.jpg",
+        "prod_imgsrc": "Photo by Randy Fath (Cropped)",
+        "prodcat": 12,
+        "vend": 7
+    }
+},
+{
+    "model": "shop.product",
+    "pk": 10,
+    "fields": {
+        "prod_name": "Doors 98",
+        "prod_desc": "Buy one get one free!",
+        "prod_price": 1000.0,
+        "prod_imgname": "black_door.gif",
+        "prod_imgsrc": "Image by kmicican",
+        "prodcat": 8,
+        "vend": 2
+    }
+},
+{
+    "model": "shop.product",
+    "pk": 11,
+    "fields": {
+        "prod_name": "Three Scoops of Django 4.2",
+        "prod_desc": "Become a Django guru in no time!",
+        "prod_price": 5000.0,
+        "prod_imgname": "book.jpg",
+        "prod_imgsrc": "Photo by Alif Caesar Rizqi Pratama (Cropped)",
+        "prodcat": 9,
+        "vend": 11
+    }
+},
+{
+    "model": "shop.product",
+    "pk": 12,
+    "fields": {
+        "prod_name": "French Fries",
+        "prod_desc": "Well, I don't guarantee they will be still fresh when you receive them.",
+        "prod_price": 100.0,
+        "prod_imgname": "french_fries.jpg",
+        "prod_imgsrc": "Photo by Mehrshad Rajabi (Cropped)",
+        "prodcat": 12,
+        "vend": 5
+    }
+},
+{
+    "model": "shop.product",
+    "pk": 13,
+    "fields": {
+        "prod_name": "Dinosaur Plush Toy",
+        "prod_desc": "I know I know, it's pre-owned now...\r\nBut would you kindly buy it?",
+        "prod_price": 250.0,
+        "prod_imgname": "dinosaur_plush_toy.jpg",
+        "prod_imgsrc": "Photo by Kelly Sikkema (Cropped)",
+        "prodcat": 4,
+        "vend": 4
+    }
+},
+{
+    "model": "shop.product",
+    "pk": 14,
+    "fields": {
+        "prod_name": "!phone 20",
+        "prod_desc": "The latest !phone from Banana!\r\nPre-order now!",
+        "prod_price": 30000.0,
+        "prod_imgname": "phone.jpg",
+        "prod_imgsrc": "Photo by NeONBRAND (Modified)",
+        "prodcat": 8,
+        "vend": 10
+    }
+},
+{
+    "model": "shop.product",
+    "pk": 15,
+    "fields": {
+        "prod_name": "Mask",
+        "prod_desc": "I bet you will be more handsome after wearing this.",
+        "prod_price": 800.0,
+        "prod_imgname": "mask.jpg",
+        "prod_imgsrc": "Photo by Tamara Gak (Cropped)",
+        "prodcat": 10,
+        "vend": 12
+    }
+},
+{
+    "model": "shop.product",
+    "pk": 16,
+    "fields": {
+        "prod_name": "Fountain of Youth",
+        "prod_desc": "10 microliters each microcentrifuge tube.",
+        "prod_price": 100000000.0,
+        "prod_imgname": "eppendorf.jpg",
+        "prod_imgsrc": "Just a normal Eppendorf tube",
+        "prodcat": 2,
+        "vend": 13
+    }
+}
+]
