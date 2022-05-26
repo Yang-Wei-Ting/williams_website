@@ -63,7 +63,7 @@ class ShopModelsTest(TestCase):
     def test_get_absolute_url(self):
         self.assertEqual(
             self.prod.get_absolute_url(),
-            f'/shop/products/{self.prod.id}/',
+            reverse('product', args=[str(self.prod.id)]),
         )
 
 
@@ -118,7 +118,10 @@ class ShopViewsTest(TestCase):
         self.assertTemplateUsed(response, 'home/page_not_found.html')
 
     def test_products_view(self):
-        response = self.client.get(reverse('products'), secure=True)
+        response = self.client.get(
+            reverse('products'),
+            secure=True,
+        )
         self.assertEqual(response.status_code, 200)
         self.assertTemplateUsed(response, 'shop/products.html')
 
