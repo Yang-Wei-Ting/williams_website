@@ -1,6 +1,6 @@
 import datetime
-import itertools
 
+from django.db.models import BooleanField, Case, When
 from django.shortcuts import get_object_or_404, render
 from django.views.generic import ListView
 
@@ -23,10 +23,13 @@ class ProductCategoriesView(ListView):
     A view that displays all product categories.
     '''
 
-    queryset = list(itertools.chain(
-        ProductCategory.objects.exclude(prodcat_name='Others'),
-        ProductCategory.objects.filter(prodcat_name='Others')
-    ))
+    queryset = ProductCategory.objects.annotate(
+        is_others=Case(
+            When(prodcat_name__exact='Others', then=True),
+            default=False,
+            output_field=BooleanField(),
+        ),
+    ).order_by('is_others', 'prodcat_name')
     template_name = 'shop/product_categories.html'
 
     def get_context_data(self, **kwargs):
@@ -58,10 +61,13 @@ class VendorsView(ListView):
     A view that displays all vendors.
     '''
 
-    queryset = list(itertools.chain(
-        Vendor.objects.exclude(vend_name='Unknown'),
-        Vendor.objects.filter(vend_name='Unknown')
-    ))
+    queryset = Vendor.objects.annotate(
+        is_unknown=Case(
+            When(vend_name__exact='Unknown', then=True),
+            default=False,
+            output_field=BooleanField(),
+        ),
+    ).order_by('is_unknown', 'vend_name')
     template_name = 'shop/vendors.html'
 
     def get_context_data(self, **kwargs):

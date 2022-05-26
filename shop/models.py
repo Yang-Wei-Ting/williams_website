@@ -50,10 +50,6 @@ class ProductCategory(models.Model):
 
     prodcat_name = models.CharField("Name", max_length=100)
 
-    class Meta:
-
-        ordering = ('prodcat_name', )
-
     def __str__(self):
         return self.prodcat_name
 
@@ -63,10 +59,6 @@ class Vendor(models.Model):
     vend_name    = models.CharField("Name", max_length=100)
     vend_country = models.CharField("Country", max_length=2, choices=COUNTRY_CHOICES, default='TW')
     vend_city    = models.CharField("City", max_length=100)
-
-    class Meta:
-
-        ordering = ('vend_name', )
 
     def __str__(self):
         return self.vend_name
