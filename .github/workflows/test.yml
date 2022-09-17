@@ -23,16 +23,12 @@ jobs:
 
       - name: Run migrations, collect static files, and run tests
         run: |
-          python manage.py migrate --database=test
+          python manage.py migrate
           python manage.py collectstatic
-          python -m coverage run manage.py test; echo
+          python -m coverage run manage.py; echo
           python -m coverage report -m
         env:
           SECRET_KEY: ${{ secrets.SECRET_KEY }}
-          POSTGRESQL_NAME: ${{ secrets.POSTGRESQL_NAME }}
-          POSTGRESQL_USER: ${{ secrets.POSTGRESQL_USER }}
-          POSTGRESQL_PASSWORD: ${{ secrets.POSTGRESQL_PASSWORD }}
-          POSTGRESQL_HOST: ${{ secrets.POSTGRESQL_HOST }}
 
       - name: Check coding style
         run: |

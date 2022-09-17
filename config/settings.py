@@ -15,9 +15,9 @@ SECRET_KEY = os.environ['SECRET_KEY']
 
 DEBUG = False
 if DEBUG is True:
-    ALLOWED_HOSTS = []
+    ALLOWED_HOSTS = ['localhost', '127.0.0.1']
 else:
-    ALLOWED_HOSTS = ['.herokuapp.com', 'localhost', '127.0.0.1']
+    ALLOWED_HOSTS = ['weitingyang.pythonanywhere.com']
     CSRF_COOKIE_SECURE = True
     SECURE_SSL_REDIRECT = True
     SESSION_COOKIE_SECURE = True
@@ -81,7 +81,7 @@ WSGI_APPLICATION = 'config.wsgi.application'
 # Application configuration
 CORS_ORIGIN_WHITELIST = (
     'http://localhost:8000',
-    'https://williams-website.herokuapp.com',
+    'https://weitingyang.pythonanywhere.com',
 )
 
 REST_FRAMEWORK = {
@@ -92,6 +92,7 @@ REST_FRAMEWORK = {
 
 
 # Database
+"""
 if 'test' in sys.argv:
     DATABASES = {
         'default': {
@@ -114,6 +115,13 @@ else:
             'NAME': BASE_DIR / 'db.sqlite3',
         },
     }
+"""
+DATABASES = {
+    'default': {
+        'ENGINE': 'django.db.backends.sqlite3',
+        'NAME': BASE_DIR / 'db.sqlite3',
+    },
+}
 
 DEFAULT_AUTO_FIELD = 'django.db.models.AutoField'
 
