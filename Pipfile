@@ -5,16 +5,18 @@ name = "pypi"
 
 [packages]
 django = "*"
-gunicorn = "*"
-python-dotenv = "*"
-psycopg2 = "*"
-whitenoise = "*"
-djangorestframework = "*"
 django-cors-headers = "*"
 django-widget-tweaks = "*"
-coverage = "*"
+djangorestframework = "*"
+gunicorn = "*"
+psycopg2-binary = "*"
+whitenoise = "*"
 
 [dev-packages]
+coverage = "*"
+flake8 = "*"
+isort = "*"
+python-dotenv = "*"
 
 [requires]
 python_version = "3.10"
