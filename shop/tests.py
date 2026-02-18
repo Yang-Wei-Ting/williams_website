@@ -132,8 +132,8 @@ class ShopViewsTest(TestCase):
         self.assertQuerysetEqual(
             response.context['object_list'],
             [
-                'Abibas', 'Banana', 'F 4 Fashion', 'Fink Manufacturing', 'Microhard', 'Mike',
-                'Penguin Inc.', 'Programing Press', 'Toys R Them', "WcDonald's", 'Unknown',
+                'Abibas', 'Banana', 'F 4 Fashion', 'Microhard', 'Mike', 'Penguin Inc.',
+                'Programing Press', 'Toys R Them', "WcDonald's", 'Unknown',
             ],
             transform=lambda obj: obj.vend_name,
             ordered=True,
@@ -181,7 +181,7 @@ class ShopViewsTest(TestCase):
             [
                 '!phone 20', 'Dinosaur Plush Toy', 'Doors 12', 'Doors 98', 'Flying Shoes',
                 'Fountain of Youth', 'French Fries', 'Hamburger', 'Ice Cubes', 'Mask',
-                'Sky-Hook', 'Sneakers', 'Three Scoops of Django 4.2',
+                'Sneakers', 'Three Scoops of Django 4.2',
             ],
             transform=lambda obj: obj.prod_name,
         )

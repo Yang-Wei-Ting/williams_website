@@ -111,15 +111,6 @@
 },
 {
     "model": "shop.vendor",
-    "pk": 8,
-    "fields": {
-        "vend_name": "Fink Manufacturing",
-        "vend_country": "XX",
-        "vend_city": "Columbia"
-    }
-},
-{
-    "model": "shop.vendor",
     "pk": 10,
     "fields": {
         "vend_name": "Banana",
@@ -191,19 +182,6 @@
         "prod_imgsrc": "Photo by Joan Tran (Cropped)",
         "prodcat": 12,
         "vend": 5
-    }
-},
-{
-    "model": "shop.product",
-    "pk": 5,
-    "fields": {
-        "prod_name": "Sky-Hook",
-        "prod_desc": "Ride the rails of the sky for the fastest travel in Columbia!",
-        "prod_price": 999999.0,
-        "prod_imgname": "sky-hook.png",
-        "prod_imgsrc": "The above image was taken from the BioShock video game series or from websites created and owned by 2K Games, the copyright of which is held by Take-Two Interactive Software, Inc. All trademarks and registered trademarks present in the image are proprietary to Take-Two Interactive and its subsidiaries.",
-        "prodcat": 1,
-        "vend": 8
     }
 },
 {
