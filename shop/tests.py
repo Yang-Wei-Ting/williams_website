@@ -81,7 +81,7 @@ class ShopViewsTest(TestCase):
         self.assertEqual(response.status_code, 200)
         self.assertTrue(isinstance(response.context['view'], ProductCategoriesView))
         self.assertEqual(response.context['view']._allowed_methods(), ['GET', 'HEAD', 'OPTIONS'])
-        self.assertQuerysetEqual(
+        self.assertQuerySetEqual(
             response.context['object_list'],
             [
                 'Books', 'Electronics', 'Fashion', 'Food', 'Health & Beauty', 'Sporting Goods',
@@ -102,7 +102,7 @@ class ShopViewsTest(TestCase):
         self.assertEqual(response.status_code, 200)
         self.assertTrue(isinstance(response.context['view'], ProductCategoryProductsView))
         self.assertEqual(response.context['view']._allowed_methods(), ['GET', 'HEAD', 'OPTIONS'])
-        self.assertQuerysetEqual(
+        self.assertQuerySetEqual(
             response.context['object_list'],
             ['French Fries', 'Hamburger', 'Ice Cubes'],
             transform=lambda obj: obj.prod_name,
@@ -129,7 +129,7 @@ class ShopViewsTest(TestCase):
         self.assertEqual(response.status_code, 200)
         self.assertTrue(isinstance(response.context['view'], VendorsView))
         self.assertEqual(response.context['view']._allowed_methods(), ['GET', 'HEAD', 'OPTIONS'])
-        self.assertQuerysetEqual(
+        self.assertQuerySetEqual(
             response.context['object_list'],
             [
                 'Abibas', 'Banana', 'F 4 Fashion', 'Microhard', 'Mike', 'Penguin Inc.',
@@ -150,7 +150,7 @@ class ShopViewsTest(TestCase):
         self.assertEqual(response.status_code, 200)
         self.assertTrue(isinstance(response.context['view'], VendorProductsView))
         self.assertEqual(response.context['view']._allowed_methods(), ['GET', 'HEAD', 'OPTIONS'])
-        self.assertQuerysetEqual(
+        self.assertQuerySetEqual(
             response.context['object_list'],
             ['French Fries', 'Hamburger'],
             transform=lambda obj: obj.prod_name,
@@ -176,7 +176,7 @@ class ShopViewsTest(TestCase):
         self.assertEqual(response.status_code, 200)
         self.assertTrue(isinstance(response.context['view'], ProductsView))
         self.assertEqual(response.context['view']._allowed_methods(), ['GET', 'HEAD', 'OPTIONS'])
-        self.assertQuerysetEqual(
+        self.assertQuerySetEqual(
             response.context['object_list'],
             [
                 '!phone 20', 'Dinosaur Plush Toy', 'Doors 12', 'Doors 98', 'Flying Shoes',
