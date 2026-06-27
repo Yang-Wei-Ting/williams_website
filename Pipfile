@@ -10,13 +10,13 @@ django-widget-tweaks = "*"
 djangorestframework = "*"
 gunicorn = "*"
 psycopg2-binary = "*"
+python-dotenv = "*"
 whitenoise = "*"
 
 [dev-packages]
 coverage = "*"
 flake8 = "*"
 isort = "*"
-python-dotenv = "*"
 
 [requires]
-python_version = "3.10"
+python_version = "3.13"
