@@ -16,10 +16,10 @@
 {% block content %}
   <main class="shop_main">
     <div class="container py-5">
-      <div class="row" data-masonry="{&quot;percentPosition&quot;: true}" style="position: relative; height: 860px;">
+      <div class="masonry-grid row">
 
         {% for object in object_list %}
-          <div class="col-sm-6 col-lg-4 mb-4" style="position: absolute; left: 0%; top: 0px;">
+          <div class="masonry-item col-sm-6 col-lg-4 mb-4">
             <div class="card">
 
               {% block subcontent %}
@@ -32,9 +32,17 @@
       </div>
     </div>
   </main>
-  <script async=""
-          src="{% static 'js/masonry.pkgd.min.js' %}"
-          integrity="sha384-GNFwBvfVxBkLMJpYMOABq3c+d3KnQxudP/mGPkzpZSTYykLBNsZEnG2D9G/X/+7D"
-          crossorigin="anonymous">
+  <script src="{% static 'js/imagesloaded.pkgd.min.js' %}"></script>
+  <script src="{% static 'js/masonry.pkgd.min.js' %}"></script>
+  <script>
+    const grid = document.querySelector(".masonry-grid");
+    if (grid) {
+      imagesLoaded(grid, () => {
+        new Masonry(grid, {
+          itemSelector: ".masonry-item",
+          percentPosition: true,
+        });
+      });
+    }
   </script>
 {% endblock content %}
