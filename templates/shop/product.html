@@ -15,8 +15,12 @@
           {% if user.is_authenticated and purchased %}
             <p class="lead heavier">
               Thank you for ordering {{ product }} (x{{ order.order_quantity }})
-              on {{ order.order_date }} {{ user.get_username }}!<br><br>
-              The total payment is NT$ {{ order.order_totalprice | floatformat:0 | intcomma }}.<br><br>
+              on {{ order.order_date }} {{ user.get_username }}!
+              <br>
+              <br>
+              The total payment is NT$ {{ order.order_totalprice | floatformat:0 | intcomma }}.
+              <br>
+              <br>
               Please note that no items will show up at your door!
             </p>
           {% else %}
@@ -26,7 +30,6 @@
             <p class="lead heavier">NT$ {{ product.prod_price | floatformat:0 | intcomma }}</p>
 
             {% if user.is_authenticated %}
-
               <form action="{% url 'product' product.id %}" method="POST">
                 {% csrf_token %}
                 <label class="lead heavier me-2">
@@ -35,11 +38,11 @@
                 </label>
                 <input type="submit" value="Order Now!" class="btn btn-primary mb-2">
               </form>
-
             {% else %}
               <p class="lead heavier">
                 Please
-                <a href="{% url 'login' %}?next={{ request.path }}" class="btn btn-primary">
+                <a href="{% url 'login' %}?next={{ request.path }}"
+                   class="btn btn-primary">
                   login
                 </a>
                 to order.
@@ -54,7 +57,7 @@
              style="background-image: url({% static 'images/'|add:product.prod_imgname %});
                     background-size: contain;
                     background-repeat: no-repeat;
-                    background-position: center;">
+                    background-position: center">
         </div>
       </div>
       <hr class="featurette-divider">

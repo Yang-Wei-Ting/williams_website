@@ -5,7 +5,9 @@
     <span class="footer text-muted">Copyright (C) 2021-2026 Wei-Ting Yang</span>
 
     {% if product %}
-      <a class="d-none d-md-inline float-end text-muted" data-bs-toggle="tooltip" data-bs-placement="top"
+      <a class="d-none d-md-inline float-end text-muted"
+         data-bs-toggle="tooltip"
+         data-bs-placement="top"
          title="{{ product.prod_imgsrc }}">About the Image</a>
     {% else %}
       <span class="d-none d-lg-inline float-end text-muted">Current Time: {{ current_time }}</span>
