@@ -152,7 +152,7 @@
         "prod_name": "Sneakers",
         "prod_desc": "Cool-looking sneakers!",
         "prod_price": 3500.0,
-        "prod_imgname": "sneakers.jpg",
+        "prod_imgname": "sneakers.avif",
         "prod_imgsrc": "Photo by Ryan Plomp (Cropped)",
         "prodcat": 5,
         "vend": 1
@@ -165,7 +165,7 @@
         "prod_name": "Flying Shoes",
         "prod_desc": "What? You're still wearing running shoes?",
         "prod_price": 50000.0,
-        "prod_imgname": "flying_shoes.jpg",
+        "prod_imgname": "flying_shoes.avif",
         "prod_imgsrc": "Photo by Hamza Ali (Cropped)",
         "prodcat": 5,
         "vend": 3
@@ -178,7 +178,7 @@
         "prod_name": "Hamburger",
         "prod_desc": "A hamburger a day keeps the doctor away!",
         "prod_price": 150.0,
-        "prod_imgname": "hamburger.jpg",
+        "prod_imgname": "hamburger.avif",
         "prod_imgsrc": "Photo by Joan Tran (Cropped)",
         "prodcat": 12,
         "vend": 5
@@ -191,7 +191,7 @@
         "prod_name": "Doors 12",
         "prod_desc": "The latest Doors from Microhard!",
         "prod_price": 10000.0,
-        "prod_imgname": "blue_door.gif",
+        "prod_imgname": "blue_door.avif",
         "prod_imgsrc": "Image by kmicican (Modified)",
         "prodcat": 8,
         "vend": 2
@@ -204,7 +204,7 @@
         "prod_name": "Ice Cubes",
         "prod_desc": "Ice cubes from Antarctica!",
         "prod_price": 250.0,
-        "prod_imgname": "ice_cubes.jpg",
+        "prod_imgname": "ice_cubes.avif",
         "prod_imgsrc": "Photo by Randy Fath (Cropped)",
         "prodcat": 12,
         "vend": 7
@@ -217,7 +217,7 @@
         "prod_name": "Doors 98",
         "prod_desc": "Buy one get one free!",
         "prod_price": 1000.0,
-        "prod_imgname": "black_door.gif",
+        "prod_imgname": "black_door.avif",
         "prod_imgsrc": "Image by kmicican",
         "prodcat": 8,
         "vend": 2
@@ -230,7 +230,7 @@
         "prod_name": "Three Scoops of Django 4.2",
         "prod_desc": "Become a Django guru in no time!",
         "prod_price": 5000.0,
-        "prod_imgname": "book.jpg",
+        "prod_imgname": "book.avif",
         "prod_imgsrc": "Photo by Alif Caesar Rizqi Pratama (Cropped)",
         "prodcat": 9,
         "vend": 11
@@ -243,7 +243,7 @@
         "prod_name": "French Fries",
         "prod_desc": "Well, I don't guarantee they will be still fresh when you receive them.",
         "prod_price": 100.0,
-        "prod_imgname": "french_fries.jpg",
+        "prod_imgname": "french_fries.avif",
         "prod_imgsrc": "Photo by Mehrshad Rajabi (Cropped)",
         "prodcat": 12,
         "vend": 5
@@ -256,7 +256,7 @@
         "prod_name": "Dinosaur Plush Toy",
         "prod_desc": "I know I know, it's pre-owned now...\r\nBut would you kindly buy it?",
         "prod_price": 250.0,
-        "prod_imgname": "dinosaur_plush_toy.jpg",
+        "prod_imgname": "dinosaur_plush_toy.avif",
         "prod_imgsrc": "Photo by Kelly Sikkema (Cropped)",
         "prodcat": 4,
         "vend": 4
@@ -269,7 +269,7 @@
         "prod_name": "!phone 20",
         "prod_desc": "The latest !phone from Banana!\r\nPre-order now!",
         "prod_price": 30000.0,
-        "prod_imgname": "phone.jpg",
+        "prod_imgname": "phone.avif",
         "prod_imgsrc": "Photo by NeONBRAND (Modified)",
         "prodcat": 8,
         "vend": 10
@@ -282,7 +282,7 @@
         "prod_name": "Mask",
         "prod_desc": "I bet you will be more handsome after wearing this.",
         "prod_price": 800.0,
-        "prod_imgname": "mask.jpg",
+        "prod_imgname": "mask.avif",
         "prod_imgsrc": "Photo by Tamara Gak (Cropped)",
         "prodcat": 10,
         "vend": 12
@@ -295,7 +295,7 @@
         "prod_name": "Fountain of Youth",
         "prod_desc": "10 microliters each microcentrifuge tube.",
         "prod_price": 100000000.0,
-        "prod_imgname": "eppendorf.jpg",
+        "prod_imgname": "eppendorf.avif",
         "prod_imgsrc": "Just a normal Eppendorf tube",
         "prodcat": 2,
         "vend": 13

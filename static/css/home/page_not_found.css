@@ -9,7 +9,7 @@ main:after {
 	position: absolute;
 	top: 0;
 	left: 0;
-	background-image: url(../../images/page_not_found.jpg);
+	background-image: url(../../images/page_not_found.avif);
 	background-size: cover;
 	background-position: center;
 	width: 100%;

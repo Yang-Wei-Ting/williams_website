@@ -22,7 +22,7 @@ class ShopModelsTest(TestCase):
             prod_name="prod_name",
             prod_desc="prod_desc",
             prod_price=3.14,
-            prod_imgname="hamburger.jpg",
+            prod_imgname="hamburger.avif",
             prod_imgsrc="prod_imgsrc",
             prodcat=self.prodcat,
             vend=self.vend,
@@ -46,7 +46,7 @@ class ShopModelsTest(TestCase):
         self.assertEqual(self.prod.prod_name, "prod_name")
         self.assertEqual(self.prod.prod_desc, "prod_desc")
         self.assertEqual(self.prod.prod_price, 3.14)
-        self.assertEqual(self.prod.prod_imgname, "hamburger.jpg")
+        self.assertEqual(self.prod.prod_imgname, "hamburger.avif")
         self.assertEqual(self.prod.prod_imgsrc, "prod_imgsrc")
         self.assertEqual(self.prod.prodcat, self.prodcat)
         self.assertEqual(self.prod.vend, self.vend)
